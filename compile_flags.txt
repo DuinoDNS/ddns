@@ -1,0 +1,4 @@
+-Wall
+-Wextra
+-Wstrict-aliasing
+-I./src

@@ -1,0 +1,4 @@
+.DS_Store
+arduino.tmp/
+dist/
+/main
