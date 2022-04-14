@@ -4,8 +4,8 @@ general.config_lock,false
 general.tracked_metric,0
 
 # Debug
-debug.ip,0.0.0.0
-debug.port,0
+debug.ip,127.0.0.1
+debug.port,9999
 debug.level,0
 
 # Network

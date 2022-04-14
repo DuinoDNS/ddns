@@ -71,6 +71,11 @@
 		const napc__DNSResponse *response
 	);
 
+	void ddns_Statistics_setDNSRequestFulfilled(
+		ddns__Instance *instance,
+		napc_u16 dns_request_identifier
+	);
+
 	void ddns_Statistics_setDNSRequestLocallyResolved(
 		ddns__Instance *instance,
 		napc_u16 dns_request_identifier,

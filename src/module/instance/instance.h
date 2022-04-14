@@ -16,6 +16,9 @@
 		ddns__Config config;
 		ddns__LocalRecords local_records;
 
+		bool debug_active;
+		napc_size debug_log_handler_index;
+
 		char buffer_1k[1024];
 		bool buffer_1k_busy;
 

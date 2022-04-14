@@ -78,6 +78,12 @@ function ddns_cli_main($args) {
 				$target_ip, $target_port, $secret, $wants_json
 			);
 		} break;
+
+		case "set_debug": {
+			handleSetDebug(
+				$target_ip, $target_port, $secret, $wants_json
+			);
+		} break;
 	}
 }
 

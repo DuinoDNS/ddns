@@ -1,4 +1,5 @@
 #include <module/core/_private/_core.h>
+#include <stdio.h>
 
 void ddns_setup(
 	ddns__Instance *instance,
@@ -10,6 +11,9 @@ void ddns_setup(
 	PV_DDNS_INFO("Initializing instance.");
 
 	instance->eth_link_status = false;
+
+	instance->debug_active = false;
+
 	instance->buffer_1k_busy = false;
 	instance->buffer_4k_busy = false;
 

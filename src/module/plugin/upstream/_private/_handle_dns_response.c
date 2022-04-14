@@ -35,17 +35,19 @@ void PV_ddns_Upstream_handleDNSResponse(
 			} break;
 		}
 	} else {
-		// Statistics //
-		/*
-		duinodns_stats__setQueryResolved(
-			instance,
-			request->dns_request_identifier,
-			false,
-			0x00,
-			NULL,
-			false
-		);*/
-		// Statistics //
+		PV_DDNS_UPSTREAM_INFO(
+			"DNS-Response could not be parsed. Attempting to parse DNS-header."
+		);
+
+		napc__DNSHeader dns_header;
+
+		if (napc_DNS_parseHeader(&dns_header, buffer, buffer_size)) {
+			ddns_Statistics_setDNSRequestFulfilled(
+				instance, dns_header.request_identifier
+			);
+		} else {
+			// invalid response
+		}
 	}
 
 	// Relay upstream response to client

@@ -23,7 +23,7 @@ void PV_ddns_DNS_handleLocalDNSRequest(
 	 * Write DNS header
 	 */
 	napc_NFWriter_writeU16BE(wr, dns_request->header.request_identifier);
-	napc_NFWriter_writeU16BE(wr, dns_request->header.raw_flags);
+	napc_NFWriter_writeU16BE(wr, dns_request->header.raw_flags | NAPC_U16_LITERAL(0x8000));
 	napc_NFWriter_writeU16BE(wr, 1); // QD
 	napc_NFWriter_writeU16BE(wr, 1); // AN
 	napc_NFWriter_writeU16BE(wr, 0);

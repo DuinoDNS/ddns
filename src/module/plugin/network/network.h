@@ -28,6 +28,12 @@
 		const char *buffer, napc_size buffer_size
 	);
 
+	void ddns_Network_sendSilent(
+		ddns__Instance *instance,
+		napc__IPv4Participant destination,
+		const char *buffer, napc_size buffer_size
+	);
+
 	bool ddns_Network_receive(
 		ddns__Instance *instance,
 		napc__IPv4Participant *source,

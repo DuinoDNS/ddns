@@ -23,6 +23,13 @@ bool PV_ddns_API_handleAPICall(
         return PV_ddns_API_handleAPICall_get_status(instance, body, response);
     }
 
+    if (napc_memeql(request, "set_debug", napc_strlen("set_debug"))) {
+        const char *body = request + napc_strlen("set_debug");
+
+        PV_DDNS_API_DEBUG("Handling API Call 'set_debug'");
+        return PV_ddns_API_handleAPICall_set_debug(instance, body, response);
+    }
+
     PV_DDNS_API_SECURITY("Unknown API call.");
 
     return false;
