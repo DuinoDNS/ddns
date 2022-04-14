@@ -27,8 +27,20 @@ void ddns_Config_fromString(
 
 		if (skip) continue;
 
-		// treat general.secret separately
-		if (napc_streqli(_key_buffer, "general.secret")) {
+		// treat network.mac_address and general.secret separately
+		if (napc_streqli(_key_buffer, "network.mac_address")) {
+			if (!napc_parser_parseMACAddress(_value_buffer, NULL)) {
+				PV_DDNS_CONFIG_ERROR(
+					"Failed to parse MAC-Address '%s'", _value_buffer
+				);
+			} else {
+				napc_strncpy(
+					config->network.mac_address,
+					_value_buffer,
+					sizeof(config->network.mac_address)
+				);
+			}
+		} else if (napc_streqli(_key_buffer, "general.secret")) {
 			napc_strncpy(
 				config->general.secret,
 				_value_buffer,

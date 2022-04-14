@@ -1,16 +1,30 @@
-address,10.10.10.10
-netmask,255.255.255.0
-gateway,10.10.10.1
-upstream.address,8.8.8.8
+# General
+general.secret,my_secret
+general.config_lock,false
+general.tracked_metric,0
+
+# Debug
+debug.ip,0.0.0.0
+debug.port,0
+debug.level,0
+
+# Network
+network.mac_address,54:E0:61:84:5F:BD
+network.address,10.0.0.55
+network.netmask,255.255.255.0
+network.gateway,10.0.0.1
+network.out_port,5656
+
+# Upstream
+upstream.enabled,true
+upstream.address,1.1.1.1
 upstream.port,53
-upstream.timeout,125
-upstream.ping_port,9999
+upstream.timeout,250
+
+# API
+api.enabled,true
+api.listen_port,9090
+
+# DNS
 dns.listen_port,8853
-out_port,5324
-http_port,8880
-local_ttl,30
-config_lock,0
-headless,0
-debug,1
-trace,0
-general.secret,password
+dns.local_ttl,0

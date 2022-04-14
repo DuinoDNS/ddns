@@ -81,7 +81,6 @@ function ddns_cli_main($args) {
 	}
 }
 
-
 try {
 	ddns_cli_main($argv);
 } catch (Error $e) {
