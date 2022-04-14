@@ -64,7 +64,7 @@ void PV_ddns_API_handleAPIRequest(
 
 	ddns_Instance_useSharedBuffer(
 		instance,
-		"4k-buffer-2",
+		"4k-buffer",
 		&source,
 		_handleAPIRequest
 	);

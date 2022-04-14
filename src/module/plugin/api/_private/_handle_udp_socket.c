@@ -94,7 +94,7 @@ void PV_ddns_API_handleUDPSocket(
 ) {
 	ddns_Instance_useSharedBuffer(
 		instance,
-		"4k-buffer-1",
+		"1k-buffer",
 		NULL,
 		_handleUDPSocket
 	);

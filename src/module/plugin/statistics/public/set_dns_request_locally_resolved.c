@@ -1,14 +1,14 @@
 #include <module/plugin/statistics/_private/_statistics.h>
 
-void ddns_Statistics_setDNSRequestResolved(
+void ddns_Statistics_setDNSRequestLocallyResolved(
 	ddns__Instance *instance,
-	const napc__DNSResponse *response
+	napc_u16 dns_request_identifier,
+	napc_size rd_data_length,
+	const napc_u8 *rd_data
 ) {
 	ddns__StatisticsContext *ctx = &instance->plugin.statistics;
 
 	ctx->persistent.dns_requests_count.served++;
-
-	napc_u16 dns_request_identifier = response->header.request_identifier;
 
 	for (napc_size i = 0; i < NAPC_ARRAY_ELEMENTS(ctx->_requests); ++i) {
 		ddns__StatisticsDNSRequest *r = &ctx->_requests[i];
@@ -21,9 +21,11 @@ void ddns_Statistics_setDNSRequestResolved(
 			"Setting req=%4.4x resolved", dns_request_identifier
 		);
 
-		r->has_response = true;
-		r->dns_response = *response;
-		r->locally_resolved = false;
+		//napc__DNSResponse mock_response;
+
+		r->has_response = false;
+		//r->dns_response = *response;
+		r->locally_resolved = true;
 
 		return;
 	}

@@ -1,8 +1,8 @@
 #include <module/config/_private/_config.h>
 
-static char _line_buffer[256]; // @static
-static char _key_buffer[128]; // @static
-static char _value_buffer[128]; // @static
+static char _line_buffer[128]; // @static
+static char _key_buffer[64]; // @static
+static char _value_buffer[64]; // @static
 
 void ddns_Config_fromString(
 	ddns__Config *config,

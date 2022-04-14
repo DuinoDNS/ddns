@@ -68,8 +68,14 @@
 
 	void ddns_Statistics_setDNSRequestResolved(
 		ddns__Instance *instance,
-		const napc__DNSResponse *response,
-		bool locally_resolved
+		const napc__DNSResponse *response
+	);
+
+	void ddns_Statistics_setDNSRequestLocallyResolved(
+		ddns__Instance *instance,
+		napc_u16 dns_request_identifier,
+		napc_size rd_data_length,
+		const napc_u8 *rd_data
 	);
 
 	void ddns_Statistics_destroy(ddns__Instance *instance);

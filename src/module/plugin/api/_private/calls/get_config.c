@@ -1,6 +1,6 @@
 #include <module/plugin/api/_private/_api.h>
 
-static char _tmp[1024u]; // @static
+static char _tmp[256]; // @static
 
 bool PV_ddns_API_handleAPICall_get_config(
 	ddns__Instance *instance,

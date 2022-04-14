@@ -22,4 +22,11 @@
 		napc__DNSRequest *dns_request,
 		const char *buffer, napc_size buffer_size
 	);
+
+	void PV_ddns_DNS_handleLocalDNSRequest(
+		ddns__Instance *instance,
+		const napc__IPv4Participant *client,
+		const napc__DNSRequest *dns_request,
+		const ddns__LocalDNSEntry *local_entry
+	);
 #endif

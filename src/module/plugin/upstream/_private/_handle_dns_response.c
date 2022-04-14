@@ -11,8 +11,7 @@ void PV_ddns_Upstream_handleDNSResponse(
 		// Statistics //
 			ddns_Statistics_setDNSRequestResolved(
 				instance,
-				&dns_response,
-				false
+				&dns_response
 			);
 		// Statistics //
 

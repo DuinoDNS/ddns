@@ -9,10 +9,9 @@ gcc \
 	-Wall \
 	-Wextra \
 	-Wpedantic \
-	-Werror \
 	main.c \
 	src/module/**/**/*.c \
 	src/module/plugin/**/**/*.c \
 	src/module/plugin/**/**/**/*.c \
-	-lnapc-aarch64 \
+	-lnapc \
 	-o main

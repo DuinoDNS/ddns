@@ -10,8 +10,8 @@ void ddns_setup(
 	PV_DDNS_INFO("Initializing instance.");
 
 	instance->eth_link_status = false;
-	instance->buffer_4k_1_busy = false;
-	instance->buffer_4k_2_busy = false;
+	instance->buffer_1k_busy = false;
+	instance->buffer_4k_busy = false;
 
 	/**
 	 * Set config defaults and then attempt to
@@ -20,13 +20,20 @@ void ddns_setup(
 	ddns_Config_setDefaults(&instance->config);
 
 	{
-		if (napc_fs_readFileCString(config_file_path, instance->buffer_4k_1, sizeof(instance->buffer_4k_1))) {
-			ddns_Config_fromString(&instance->config, instance->buffer_4k_1);
+		if (napc_fs_readFileCString(config_file_path, instance->buffer_4k, sizeof(instance->buffer_4k))) {
+			ddns_Config_fromString(&instance->config, instance->buffer_4k);
+		}
+	}
+
+	{
+		if (napc_fs_readFileCString(records_file_path, instance->buffer_4k, sizeof(instance->buffer_4k))) {
+			ddns_LocalRecords_fromString(&instance->local_records, instance->buffer_4k);
 		}
 	}
 
 	// dump configuration on start
 	ddns_Config_dump(&instance->config);
+	ddns_LocalRecords_dump(&instance->local_records);
 
 	/**
 	 * Initialize all plugins.
