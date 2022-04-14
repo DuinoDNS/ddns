@@ -7,6 +7,8 @@ mkdir arduino.tmp
 
 mkdir -p dist
 
+php build.scripts/build-cli-file.php > dist/cli.php
+
 cp -r src arduino.tmp/src
 cp library.properties arduino.tmp
 
