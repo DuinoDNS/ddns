@@ -11,4 +11,6 @@ void PV_ddns_onLinkUp(ddns__Instance *instance) {
 
 		q->meta_initialized = false;
 	}
+
+	instance->api.random_iv_ready = false;
 }

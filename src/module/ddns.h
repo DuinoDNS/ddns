@@ -49,6 +49,17 @@
 		ddns__Query queries[4];
 
 		/**
+		 * API
+		 */
+		struct {
+			bool random_iv_ready;
+			napc_u8 random_iv[16];
+
+			napc_u8 request_identifier[16];
+			const char *body;
+		} api;
+
+		/**
 		 * Shared buffers
 		 */
 		char buffer_1k[1024];

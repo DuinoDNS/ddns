@@ -52,4 +52,4 @@ foreach ($config as $section => $keys) {
 
 $config_dump_file .= "}\n";
 
-file_put_contents("src/module/config/_private/_dump.c", $config_dump_file);
+file_put_contents("src/module/agf/_config_dump.c", $config_dump_file);

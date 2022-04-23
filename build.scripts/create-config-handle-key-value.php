@@ -58,4 +58,4 @@ $config_handle_kv_file .= "    PV_DDNS_CONFIG_ERROR(\"Unknown key '%s'\", key);\
 $config_handle_kv_file .= "    return false;\n";
 $config_handle_kv_file .= "}\n";
 
-file_put_contents("src/module/config/_private/_handle_key_value.c", $config_handle_kv_file);
+file_put_contents("src/module/agf/_config_handle_key_value.c", $config_handle_kv_file);

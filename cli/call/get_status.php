@@ -1,8 +1,10 @@
 <?php
 
 function ddns__getStatusAPICall($ip, $port, $secret) {
-	$response = ddns__sendRequest($ip, $port, $secret, "get_status");
+	$response = ddns__sendRequest($ip, $port, $secret, "get_config");
 	$reader = new ddns__BinaryReader($response);
+
+	var_dump($response);
 
 	$uptime = $reader->readU32BE();
 	$upstream_latency = $reader->readU32BE();

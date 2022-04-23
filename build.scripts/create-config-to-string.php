@@ -61,4 +61,4 @@ $config_to_string_file .= "    return true;\n";
 
 $config_to_string_file .= "}\n";
 
-file_put_contents("src/module/config/_private/_to_string.c", $config_to_string_file);
+file_put_contents("src/module/agf/_config_to_string.c", $config_to_string_file);

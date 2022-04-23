@@ -1,9 +1,10 @@
 #include <module/_private/_ddns.h>
 
 static void _handleUDPSocket(
-	ddns__Instance *instance,
-	const char *what
+	ddns__Instance *instance, void *context, napc__Buffer *buffer
 ) {
+	const char *what = context;
+
 	napc__UDPSocket udp_socket;
 	void (*handler)(ddns__Instance *, napc__IPv4Participant *, napc__Buffer) = NULL;
 
@@ -15,34 +16,41 @@ static void _handleUDPSocket(
 		handler = PV_ddns_handleNetworkingUDPMessage;
 	} else if (napc_streqli(what, "api")) {
 		udp_socket = instance->api_udp_in;
-	} else {
-		return;
+		handler = PV_ddns_handleAPIUDPMessage;
 	}
 
-	napc__Buffer buffer = napc_Buffer_create(instance->buffer_1k, sizeof(instance->buffer_1k));
+	if (!handler) return;
+
 	napc__IPv4Participant client;
 
-	if (!napc_UDP_receive(udp_socket, &client, &buffer)) {
+	if (!napc_UDP_receive(udp_socket, &client, buffer)) {
 		return;
 	}
 
 	PV_DDNS_DEBUG(
 		"Received %" NAPC_SIZE_PRINTF " bytes from client %s"
 		" (udp_socket=%s)",
-		buffer.size, client.addr, what
+		buffer->size, client.addr, what
 	);
 
 	if (handler) {
 		handler(
-			instance, &client, buffer
+			instance, &client, *buffer
 		);
 	}
 }
 
 void PV_ddns_runLoop(ddns__Instance *instance) {
-	_handleUDPSocket(instance, "dns");
-	_handleUDPSocket(instance, "networking");
-	_handleUDPSocket(instance, "api");
+	PV_ddns_useSharedBuffer(instance, "1k-buffer", (void *)"dns", _handleUDPSocket);
+	PV_ddns_useSharedBuffer(instance, "1k-buffer", (void *)"networking", _handleUDPSocket);
+
+	if (napc_random_getRandomBytes(sizeof(instance->api.random_iv), instance->api.random_iv)) {
+		instance->api.random_iv_ready = true;
+	}
+
+	if (instance->api.random_iv_ready) {
+		PV_ddns_useSharedBuffer(instance, "1k-buffer", (void *)"api", _handleUDPSocket);
+	}
 
 	/**
 	 * Mark queries that are too old.
@@ -59,6 +67,8 @@ void PV_ddns_runLoop(ddns__Instance *instance) {
 			q->meta.state = DDNS_QUERY_STATE_TIMEOUT;
 		}
 	}
+
+	napc_random_collectBytes();
 
 
 	if (napc_Timer_expired(&instance->tmr)) {

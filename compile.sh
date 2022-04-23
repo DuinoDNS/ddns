@@ -11,7 +11,8 @@ gcc \
 	-Wpedantic \
 	main.c \
 	src/module/*.c \
-	src/module/_private/*.c \
+	src/module/**/*.c \
 	src/module/**/**/*.c \
+	src/module/**/**/**/*.c \
 	-lnapc \
 	-o main
