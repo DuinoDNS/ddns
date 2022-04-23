@@ -10,8 +10,8 @@ gcc \
 	-Wextra \
 	-Wpedantic \
 	main.c \
+	src/module/*.c \
+	src/module/_private/*.c \
 	src/module/**/**/*.c \
-	src/module/plugin/**/**/*.c \
-	src/module/plugin/**/**/**/*.c \
 	-lnapc \
 	-o main

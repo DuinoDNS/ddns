@@ -114,6 +114,10 @@ static bool _parseLine(ddns__LocalDNSEntry *target, char *line) {
 
 				case NAPC_DNS_QTYPE_AAAA: {
 				} break;
+
+				default: {
+
+				} break;
 			}
 		} else {
 			PV_DDNS_LC_ERROR("Invalid parse operation '%s'", operation);

@@ -5,7 +5,7 @@
 		extern "C" {
 	#endif
 
-	#include <module/core/core.h>
+	#include <module/ddns.h>
 
 	#if defined(__cplusplus)
 		}
