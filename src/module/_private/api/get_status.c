@@ -7,6 +7,8 @@ bool PV_ddns_handleAPICall_get_status(
 ) {
 	NAPC_IGNORE_VALUE(request);
 
+	napc_Writer_writeU8(response, instance->debug_active ? 1 : 0);
+
 	napc_Writer_writeU32BE(response, instance->stats.incoming_queries);
 	napc_Writer_writeU32BE(response, instance->stats.completed_queries);
 

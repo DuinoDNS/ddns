@@ -7,16 +7,16 @@ void ddns_setup(
 ) {
 	PV_DDNS_INFO("Initializing instance.");
 
+	/**
+	 * Init core variables
+	 */
 	instance->eth_link_status = false;
-
 	instance->debug_active = false;
-
 	instance->buffer_1k_1_busy = false;
 	instance->buffer_1k_2_busy = false;
 
 	/**
-	 * Set config defaults and then attempt to
-	 * read configuration.
+	 * Set config defaults
 	 */
 	ddns_Config_setDefaults(&instance->config);
 

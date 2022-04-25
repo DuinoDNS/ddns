@@ -4,6 +4,10 @@ function handleGetStatus($ip, $port, $secret, $wants_json) {
 	$status = ddns__getStatusAPICall($ip, $port, $secret);
 
 	if (!$wants_json) {
+		if ($status["debug_active"]) {
+			printf("*** DEBUGGING ACTIVE ***\n\n");
+		}
+
 		printf("Uptime                 : %5u s\n", $status["uptime"]);
 		//printf("Upstream latency       : %5d ms\n", $status["upstream_latency"]);
 		printf("\n");
