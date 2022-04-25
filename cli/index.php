@@ -10,6 +10,8 @@ function ddns_cli_main($args) {
 		fwrite(STDERR, "       ddns ip:port /path/to/secret get_queries [--json]\n");
 		fwrite(STDERR, "       ddns ip:port /path/to/secret get_config [--json]\n");
 		fwrite(STDERR, "\n");
+		fwrite(STDERR, "       ddns ip:port /path/to/secret restart\n");
+		fwrite(STDERR, "\n");
 		fwrite(STDERR, "       ddns ip:port /path/to/secret set_debug\n");
 		fwrite(STDERR, "       ddns ip:port /path/to/secret clear_debug\n");
 
@@ -48,6 +50,12 @@ function ddns_cli_main($args) {
 		case "get_queries": {
 			handleGetQueries(
 				$target_ip, $target_port, $secret, $wants_json
+			);
+		} break;
+
+		case "restart": {
+			handleRestart(
+				$target_ip, $target_port, $secret
 			);
 		} break;
 

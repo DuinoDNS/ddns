@@ -38,6 +38,13 @@ bool PV_AGF_ddns_handleAPICall(
         return PV_ddns_handleAPICall_get_status(instance, body, response);
     }
 
+    if (napc_memeql(request, "restart", napc_strlen("restart"))) {
+        const char *body = request + napc_strlen("restart");
+
+        PV_DDNS_DEBUG("Handling API Call 'restart'");
+        return PV_ddns_handleAPICall_restart(instance, body, response);
+    }
+
     if (napc_memeql(request, "set_debug", napc_strlen("set_debug"))) {
         const char *body = request + napc_strlen("set_debug");
 
