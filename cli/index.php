@@ -38,36 +38,65 @@ function ddns_cli_main($args) {
 	$secret = trim(file_get_contents($secret_file_path));
 
 	$api_call = array_shift($args);
-	$wants_json = false;
+
+	$api_call_args = [
+		"named" => [],
+		"unnamed" => []
+	];
+
+	// parse additional args
+	while (true) {
+		$arg = array_shift($args);
+
+		if (!$arg) break;
+
+		if (substr($arg, 0, 2) === "--") {
+			$api_call_args["named"][$arg] = array_shift($args);
+		} else {
+			$api_call_args["unnamed"][] = $arg;
+		}
+	}
 
 	switch ($api_call) {
 		case "get_status": {
 			handleGetStatus(
-				$target_ip, $target_port, $secret, $wants_json
+				$target_ip, $target_port, $secret, $api_call_args
+			);
+		} break;
+
+		case "get_config_section": {
+			handleGetConfigSection(
+				$target_ip, $target_port, $secret, $api_call_args
+			);
+		} break;
+
+		case "get_config": {
+			handleGetConfig(
+				$target_ip, $target_port, $secret, $api_call_args
 			);
 		} break;
 
 		case "get_queries": {
 			handleGetQueries(
-				$target_ip, $target_port, $secret, $wants_json
+				$target_ip, $target_port, $secret, $api_call_args
 			);
 		} break;
 
 		case "restart": {
 			handleRestart(
-				$target_ip, $target_port, $secret
+				$target_ip, $target_port, $secret, $api_call_args
 			);
 		} break;
 
 		case "set_debug": {
 			handleSetDebug(
-				$target_ip, $target_port, $secret, $wants_json
+				$target_ip, $target_port, $secret, $api_call_args
 			);
 		} break;
 
 		case "clear_debug": {
 			handleClearDebug(
-				$target_ip, $target_port, $secret, $wants_json
+				$target_ip, $target_port, $secret, $api_call_args
 			);
 		} break;
 	}

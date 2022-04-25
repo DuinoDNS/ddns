@@ -9,4 +9,4 @@ function systemOrDie($cmd) {
 systemOrDie("php build.scripts/create-api-calls-files.php");
 systemOrDie("php build.scripts/create-config-dump.php");
 systemOrDie("php build.scripts/create-config-handle-key-value.php");
-systemOrDie("php build.scripts/create-config-to-string.php");
+systemOrDie("php build.scripts/create-config-write.php");

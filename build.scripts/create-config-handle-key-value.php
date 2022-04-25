@@ -38,6 +38,9 @@ foreach ($config as $section => $keys) {
 		} else if ($type === "_ip_address") {
 			$config_handle_kv_file .= "        if (napc_parser_parseIPv4Address(value, NULL)) {\n";
 			$config_handle_kv_file .= "            memcpy(config->$config_key, value, sizeof(config->$config_key));\n";
+		} else if ($type === "_mac_address") {
+			$config_handle_kv_file .= "        if (napc_parser_parseMACAddress(value, NULL)) {\n";
+			$config_handle_kv_file .= "            memcpy(config->$config_key, value, sizeof(config->$config_key));\n";
 		} else if ($type === "bool") {
 			$config_handle_kv_file .= "        bool tmp;\n";
 

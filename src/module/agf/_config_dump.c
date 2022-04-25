@@ -17,6 +17,7 @@ void PV_AGF_ddns_Config_dump(
     PV_DDNS_CONFIG_INFO("    level            = %" NAPC_U16_PRINTF, config->debug.level);
     PV_DDNS_CONFIG_INFO(" ");
     PV_DDNS_CONFIG_INFO("* network");
+    PV_DDNS_CONFIG_INFO("    mac_address      = %s", config->network.mac_address);
     PV_DDNS_CONFIG_INFO("    address          = %s", config->network.address);
     PV_DDNS_CONFIG_INFO("    netmask          = %s", config->network.netmask);
     PV_DDNS_CONFIG_INFO("    gateway          = %s", config->network.gateway);

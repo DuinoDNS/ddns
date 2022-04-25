@@ -49,6 +49,10 @@ bool PV_AGF_ddns_Config_write(
     }
     /* network */
     if (napc_streqli(desired_section, "network")) {
+        if (!napc_Writer_writeString(writer, "network.mac_address,")) return false;
+        if (!napc_Writer_writeString(writer, config->network.mac_address)) return false;
+        if (!napc_Writer_writeChar(writer, '\n')) return false;
+
         if (!napc_Writer_writeString(writer, "network.address,")) return false;
         if (!napc_Writer_writeString(writer, config->network.address)) return false;
         if (!napc_Writer_writeChar(writer, '\n')) return false;

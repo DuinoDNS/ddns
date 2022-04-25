@@ -34,7 +34,7 @@ foreach ($config as $section => $keys) {
 			$config_dump_file .= '%" NAPC_U16_PRINTF';
 		} else if ($type === "napc_u32") {
 			$config_dump_file .= '%" NAPC_U32_PRINTF';
-		} else if ($type === "_ip_address") {
+		} else if ($type === "_ip_address" || $type === "_mac_address") {
 			$config_dump_file .= '%s"';
 		} else if ($type === "bool") {
 			$config_dump_file .= '%s"';

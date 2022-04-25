@@ -17,11 +17,11 @@ bool PV_AGF_ddns_handleAPICall(
         return PV_ddns_handleAPICall_clear_debug(instance, body, response);
     }
 
-    if (napc_memeql(request, "get_config", napc_strlen("get_config"))) {
-        const char *body = request + napc_strlen("get_config");
+    if (napc_memeql(request, "get_config_section", napc_strlen("get_config_section"))) {
+        const char *body = request + napc_strlen("get_config_section");
 
-        PV_DDNS_DEBUG("Handling API Call 'get_config'");
-        return PV_ddns_handleAPICall_get_config(instance, body, response);
+        PV_DDNS_DEBUG("Handling API Call 'get_config_section'");
+        return PV_ddns_handleAPICall_get_config_section(instance, body, response);
     }
 
     if (napc_memeql(request, "get_queries", napc_strlen("get_queries"))) {

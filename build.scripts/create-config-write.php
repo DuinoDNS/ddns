@@ -43,6 +43,8 @@ foreach ($config as $section => $keys) {
 			$config_to_string_file .= "        if (!napc_Writer_writeStringFormat(writer, \"%\" NAPC_U32_PRINTF, config->$config_key)) return false;\n";
 		} else if ($type === "_ip_address") {
 			$config_to_string_file .= "        if (!napc_Writer_writeString(writer, config->$config_key)) return false;\n";
+		} else if ($type === "_mac_address") {
+			$config_to_string_file .= "        if (!napc_Writer_writeString(writer, config->$config_key)) return false;\n";
 		} else if ($type === "bool") {
 			$config_to_string_file .= "        if (config->$config_key) {\n";
 			$config_to_string_file .= "            if (!napc_Writer_writeString(writer, \"true\")) return false;\n";
@@ -63,4 +65,4 @@ foreach ($config as $section => $keys) {
 $config_to_string_file .= "    return false;\n";
 $config_to_string_file .= "}\n";
 
-file_put_contents("src/module/agf/_config_to_string.c", $config_to_string_file);
+file_put_contents("src/module/agf/_config_write.c", $config_to_string_file);

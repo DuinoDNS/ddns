@@ -10,7 +10,7 @@
 		"level": "napc_u16"
 	},
 	"network": {
-		"mac_address": "",
+		"mac_address": "_mac_address",
 		"address": "_ip_address",
 		"netmask": "_ip_address",
 		"gateway": "_ip_address",

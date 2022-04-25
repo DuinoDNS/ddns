@@ -57,6 +57,15 @@ bool PV_AGF_ddns_Config_handleKeyValue(
         }
     }
 
+    if (napc_streqli(key, "network.mac_address")) {
+        if (napc_parser_parseMACAddress(value, NULL)) {
+            memcpy(config->network.mac_address, value, sizeof(config->network.mac_address));
+            return true;
+        } else {
+            PV_DDNS_CONFIG_ERROR("Failed to parse value for 'network.mac_address' value is '%s'", value);
+        }
+    }
+
     if (napc_streqli(key, "network.address")) {
         if (napc_parser_parseIPv4Address(value, NULL)) {
             memcpy(config->network.address, value, sizeof(config->network.address));

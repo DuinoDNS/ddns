@@ -1,9 +1,9 @@
 <?php
 
-function handleGetStatus($ip, $port, $secret, $wants_json) {
+function handleGetStatus($ip, $port, $secret, $args) {
 	$status = ddns__getStatusAPICall($ip, $port, $secret);
 
-	if (!$wants_json) {
+	if (!array_key_exists("--json", $args["named"])) {
 		if ($status["debug_active"]) {
 			printf("*** DEBUGGING ACTIVE ***\n\n");
 		}

@@ -1,9 +1,9 @@
 <?php
 
-function handleGetQueries($ip, $port, $secret, $wants_json) {
+function handleGetQueries($ip, $port, $secret, $args) {
 	$queries = ddns__getQueriesAPICall($ip, $port, $secret);
 
-	if (!$wants_json) {
+	if (!array_key_exists("--json", $args["named"])) {
 		printf("\nQueries (completed / incoming) : %d / %d\n", $queries["completed"], $queries["incoming"]);
 		printf("Reliability (%%)                : %3d %%\n\n", (int)(($queries["incoming"] / $queries["completed"]) * 100));
 
