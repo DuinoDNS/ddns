@@ -5,9 +5,9 @@ static char _tmp_label_buffer[128]; // @static
 
 void PV_ddns_sendDNSQueryAnswer(
 	ddns__Instance *instance,
-	napc__IPv4Participant *client,
-	ddns__Query *query,
-	ddns__LocalDNSEntry *entry
+	const napc__IPv4Participant *client,
+	const ddns__Query *query,
+	const ddns__LocalDNSEntry *entry
 ) {
 	const char *requested_name = query->request.query.name;
 	char *label_saveptr = NULL;

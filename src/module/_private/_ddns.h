@@ -37,9 +37,9 @@
 
 	void PV_ddns_sendDNSQueryAnswer(
 		ddns__Instance *instance,
-		napc__IPv4Participant *client,
-		ddns__Query *query,
-		ddns__LocalDNSEntry *entry
+		const napc__IPv4Participant *client,
+		const ddns__Query *query,
+		const ddns__LocalDNSEntry *entry
 	);
 
 	/**
@@ -54,10 +54,6 @@
 	 */
 	void PV_ddns_handleAPIUDPMessage(
 		ddns__Instance *instance, napc__IPv4Participant *client, napc__Buffer buffer
-	);
-
-	void PV_ddns_handleAPIRequest(
-		ddns__Instance *instance, napc__IPv4Participant *client
 	);
 
 	bool PV_ddns_handleAPICall(

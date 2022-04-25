@@ -1,6 +1,6 @@
 #include <module/_private/_ddns.h>
 
-static char _tmp[256]; // @static
+static char _tmp[512]; // @static
 
 bool PV_ddns_handleAPICall_get_config(
 	ddns__Instance *instance,
@@ -11,7 +11,7 @@ bool PV_ddns_handleAPICall_get_config(
 
 	if (!ddns_Config_toString(
 		&instance->config,
-		false,
+		"network",
 		_tmp,
 		sizeof(_tmp)
 	)) {

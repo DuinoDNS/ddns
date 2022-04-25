@@ -25,7 +25,7 @@
 	 */
 	bool PV_ddns_Config_toString(
 		const ddns__Config *config,
-		bool include_secret,
+		const char *desired_section,
 		char *buf,
 		napc_size buf_size
 	);

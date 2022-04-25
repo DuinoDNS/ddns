@@ -2,7 +2,7 @@
 
 chdir(__DIR__."/../");
 
-$calls = scandir("src/module/_private/api/calls");
+$calls = scandir("src/module/_private/api");
 $header_file = "#if !defined(PV_DDNS_API_CALLS_h)
 	#define PV_DDNS_API_CALLS_h
 

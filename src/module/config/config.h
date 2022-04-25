@@ -64,7 +64,7 @@
 
 	bool ddns_Config_toString(
 		const ddns__Config *config,
-		bool include_secret,
+		const char *desired_section,
 		char *buf,
 		napc_size buf_size
 	) NAPC_FN_WARNUNUSED_RET();

@@ -1,7 +1,16 @@
 #include <module/_private/_ddns.h>
 
-static napc_u8 _request_hmac[32]; // @static
-static napc_u8 _request_iv[16]; // @static
+struct api_request_context {
+	const napc__IPv4Participant *client;
+	napc_u8 request_identifier[16];
+	const char *request_body;
+};
+
+static void _handleAPIRequest(
+	ddns__Instance *instance,
+	void *context,
+	napc__Buffer *buffer
+);
 
 /*
  * This function gets called whenever a message appears
@@ -10,6 +19,9 @@ static napc_u8 _request_iv[16]; // @static
 void PV_ddns_handleAPIUDPMessage(
 	ddns__Instance *instance, napc__IPv4Participant *client, napc__Buffer buffer
 ) {
+	napc_u8 request_hmac[32];
+	napc_u8 request_iv[16]; 
+
 	// hmac + iv + payload = 1024 bytes
 	// only use 1024 bytes (MTU limit)
 	if (buffer.size != 1024) {
@@ -28,19 +40,19 @@ void PV_ddns_handleAPIUDPMessage(
 
 	// read request hmac
 	for (napc_size i = 0; i < 32; ++i) {
-		_request_hmac[i] = request[i];
+		request_hmac[i] = request[i];
 	}
 
 	// read request iv
 	for (napc_size i = 0; i < 16; ++i) {
-		_request_iv[i] = request[32 + i];
+		request_iv[i] = request[32 + i];
 	}
 
 	unsigned char *ciphertext = request + 32 + 16;
 	const char *hmac_key = instance->config.general.hashed_secret;
 
 	// check hmac signature
-	if (!napc_hmac_verify(hmac_key, _request_hmac, ciphertext, 1024 - 32 - 16)) {
+	if (!napc_hmac_verify(hmac_key, request_hmac, ciphertext, 1024 - 32 - 16)) {
 		PV_DDNS_SECURITY("Invalid HMAC signature.");
 
 		napc_UDP_send(
@@ -54,7 +66,7 @@ void PV_ddns_handleAPIUDPMessage(
 	}
 
 	// decrypt payload
-	if (!napc_aes_decrypt(_request_iv, hmac_key, ciphertext, 1024 - 32 - 16)) {
+	if (!napc_aes_decrypt(request_iv, hmac_key, ciphertext, 1024 - 32 - 16)) {
 		PV_DDNS_ERROR("Failed to decrypt request.");
 
 		return;
@@ -67,9 +79,11 @@ void PV_ddns_handleAPIUDPMessage(
 		return;
 	}
 
+	struct api_request_context ctx;
+
 	// read request identifier
 	for (napc_size i = 0; i < 16; ++i) {
-		instance->api.request_identifier[i] = ciphertext[5 + i];
+		ctx.request_identifier[i] = ciphertext[5 + i];
 	}
 
 	char *payload = (char *)(ciphertext + 5 + 16);
@@ -77,7 +91,70 @@ void PV_ddns_handleAPIUDPMessage(
 	// make sure payload is always NUL-terminated
 	payload[1023] = 0;
 
-	instance->api.body = payload;
+	ctx.request_body = payload;
+	ctx.client = client;
 
-	PV_ddns_handleAPIRequest(instance, client);
+	PV_ddns_useSharedBuffer(
+		instance,
+		"4k-buffer",
+		&ctx,
+		_handleAPIRequest
+	);
+}
+
+static void _handleAPIRequest(
+	ddns__Instance *instance,
+	void *context,
+	napc__Buffer *buffer
+) {
+	struct api_request_context *ctx = context;
+
+	NAPC_ASSERT(buffer->size == 4096);
+	NAPC_ASSERT(instance->api.random_iv_ready);
+
+	// write operations should never fail
+	napc__NFWriter writer = napc_NFWriter_create(buffer->data, 1024);
+
+	napc_mzero(buffer->data, 1024);
+
+	// skip hmac
+	napc_NFWriter_moveCurrentOffsetByAmount(&writer, 32);
+
+	// write IV
+	const napc_u8 *response_iv = instance->api.random_iv;
+	napc_NFWriter_writeU8Array(&writer, 16, response_iv);
+
+	// write request id
+	napc_NFWriter_writeU8Array(&writer, 16, ctx->request_identifier);
+
+	// write ddns_
+	napc_NFWriter_writeString(&writer, "ddns_");
+
+	napc__Writer response_writer = napc_Writer_create(
+		napc_NFWriter_getCurrentAddress(&writer),
+		1024 - napc_NFWriter_getCurrentOffset(&writer)
+	);
+
+	PV_ddns_handleAPICall(
+		instance,
+		ctx->request_body,
+		&response_writer
+	);
+
+	unsigned char *response = ((unsigned char *)buffer->data) + 32 + 16;
+	const char *hmac_key = instance->config.general.hashed_secret;
+
+	NAPC_IGNORE_VALUE(
+		napc_aes_encrypt(response_iv, hmac_key, response, 1024 - 32 - 16)
+	);
+
+	// hmac is at the beginning of buffer
+	napc_hmac_calculate(buffer->data, hmac_key, response, 1024 - 32 - 16);
+
+	napc_UDP_send(
+		instance->api_udp_in,
+		*ctx->client,
+		buffer->data,
+		1024
+	);
 }

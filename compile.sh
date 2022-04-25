@@ -13,6 +13,5 @@ gcc \
 	src/module/*.c \
 	src/module/**/*.c \
 	src/module/**/**/*.c \
-	src/module/**/**/**/*.c \
 	-lnapc \
 	-o main
