@@ -22,6 +22,8 @@ void PV_ddns_handleDNSUDPMessage(
 		"Parsed DNS-Query header: request identifier is 0x%04x", dns_header.request_identifier
 	);
 
+	instance->stats.incoming_queries++;
+
 	/*
 	 * Check if the request is already in instance->queries list.
 	 */
@@ -105,6 +107,8 @@ void PV_ddns_handleDNSUDPMessage(
 
 			head->meta.state = DDNS_QUERY_STATE_COMPLETED;
 			head->has_response = false;
+
+			instance->stats.completed_queries++;
 
 			return;
 		}

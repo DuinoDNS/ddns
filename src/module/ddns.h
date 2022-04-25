@@ -46,7 +46,7 @@
 		/**
 		 * Queries
 		 */
-		ddns__Query queries[4];
+		ddns__Query queries[32];
 
 		/**
 		 * API
@@ -55,6 +55,14 @@
 			bool random_iv_ready;
 			napc_u8 random_iv[16];
 		} api;
+
+		/**
+		 * Statistics
+		 */
+		struct {
+			napc_u32 incoming_queries;
+			napc_u32 completed_queries;
+		} stats;
 
 		/**
 		 * Shared buffers

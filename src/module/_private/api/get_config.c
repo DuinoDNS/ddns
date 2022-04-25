@@ -5,11 +5,9 @@ bool PV_ddns_handleAPICall_get_config(
 	const char *request,
 	napc__Writer *response
 ) {
-	NAPC_IGNORE_VALUE(request);
-
 	if (!ddns_Config_write(
 		&instance->config,
-		"general",
+		request + 1,
 		response
 	)) {
 		return false;

@@ -35,6 +35,10 @@ void PV_ddns_handleNetworkingUDPMessage(
 		);
 
 		return;
+	} else if (q->meta.state == DDNS_QUERY_STATE_COMPLETED) {
+		PV_DDNS_ERROR("Query already in COMPLETED state.");
+
+		return;
 	}
 
 	NAPC_ASSERT(q->meta_initialized);
@@ -46,4 +50,5 @@ void PV_ddns_handleNetworkingUDPMessage(
 	);
 
 	q->meta.state = DDNS_QUERY_STATE_COMPLETED;
+	instance->stats.completed_queries++;
 }
