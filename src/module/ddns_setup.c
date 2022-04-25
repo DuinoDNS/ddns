@@ -5,8 +5,6 @@ void ddns_setup(
 	const char *config_file_path,
 	const char *records_file_path
 ) {
-	NAPC_IGNORE_VALUE(records_file_path);
-
 	PV_DDNS_INFO("Initializing instance.");
 
 	instance->eth_link_status = false;
@@ -22,21 +20,9 @@ void ddns_setup(
 	 */
 	ddns_Config_setDefaults(&instance->config);
 
-	{
-		if (napc_fs_readFileCString(config_file_path, instance->buffer_1k_1, sizeof(instance->buffer_1k_1))) {
-			ddns_Config_fromString(&instance->config, instance->buffer_1k_1);
-		}
-	}
-
-	{
-		if (napc_fs_readFileCString(records_file_path, instance->buffer_1k_1, sizeof(instance->buffer_1k_1))) {
-			ddns_LocalRecords_fromString(&instance->local_records, instance->buffer_1k_1);
-		}
-	}
-
-	// dump configuration on start
-	ddns_Config_dump(&instance->config);
-	ddns_LocalRecords_dump(&instance->local_records);
+	instance->needs_initalisation = true;
+	instance->config_file_path = config_file_path;
+	instance->records_file_path = records_file_path;
 
 	/**
 	 * This function is only called ONCE in the program's lifecycle

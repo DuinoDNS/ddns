@@ -28,6 +28,11 @@
 
 	typedef struct ddns__Instance {
 		bool eth_link_status;
+
+		bool needs_initalisation;
+		const char *config_file_path;
+		const char *records_file_path;
+
 		ddns__Config config;
 		ddns__LocalRecords local_records;
 

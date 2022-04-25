@@ -55,19 +55,11 @@ void PV_ddns_runLoop(ddns__Instance *instance) {
 
 	PV_ddns_invalidateOldQueries(instance);
 	PV_ddns_printDebugInformation(instance);
+	PV_ddns_gatherStatisticalValues(instance);
 
 	if (instance->config.discovery.enabled) {
 		PV_ddns_advertiseOnNetwork(instance);
 	}
 
-	if (napc_Timer_expired(&instance->statistics_timer)) {
-		napc_Timer_restart(&instance->statistics_timer);
-
-		instance->stats.ticks_per_second = instance->stats._current_ticks_count;
-		instance->stats._current_ticks_count = 0;
-	}
-
 	napc_random_collectBytes();
-
-	++instance->stats._current_ticks_count;
 }
