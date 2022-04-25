@@ -71,7 +71,7 @@ void PV_ddns_handleDNSUDPMessage(
 	ddns__Query *head = &instance->queries[0];
 
 	head->meta.requester = *client;
-	head->meta.dns_header = dns_header;
+	head->meta.dns_request_identifier = dns_header.request_identifier;
 	head->meta.state = DDNS_QUERY_STATE_INITIALIZED;
 	head->meta_initialized = true;
 

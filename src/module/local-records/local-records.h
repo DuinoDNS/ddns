@@ -8,7 +8,7 @@
 
 		napc_u32 ttl;
 
-		char name[128];
+		char name[64];
 		napc__DNSQType type;
 
 		napc_size rd_data_length;

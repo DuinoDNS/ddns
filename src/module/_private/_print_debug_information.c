@@ -21,7 +21,7 @@ void PV_ddns_printDebugInformation(ddns__Instance *instance) {
 		if (!q->meta_initialized) {
 			napc_printf("not initialized");
 		} else {
-			napc_printf("req=%04x ", q->meta.dns_header.request_identifier);
+			napc_printf("req=%04x ", q->meta.dns_request_identifier);
 
 			napc_printf("state=");
 

@@ -8,7 +8,7 @@ ddns__Query *PV_ddns_getQueryByRequestIdentifier(
 
 		if (!q->meta_initialized) continue;
 
-		if (q->meta.dns_header.request_identifier == dns_request_identifier) {
+		if (q->meta.dns_request_identifier == dns_request_identifier) {
 			return q;
 		}
 	}

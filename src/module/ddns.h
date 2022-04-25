@@ -13,7 +13,7 @@
 		bool meta_initialized;
 
 		struct {
-			napc__DNSHeader dns_header;
+			napc_u16 dns_request_identifier;
 			napc_time received_at;
 			napc__IPv4Participant requester;
 			napc_u8 state;
@@ -53,7 +53,7 @@
 		/**
 		 * Queries
 		 */
-		ddns__Query queries[16];
+		ddns__Query queries[32];
 
 		/**
 		 * API

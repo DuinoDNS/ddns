@@ -19,7 +19,7 @@ bool PV_ddns_handleAPICall_get_queries(
 
 		if (!q->meta_initialized) continue;
 
-		napc_Writer_writeU16BE(response, q->meta.dns_header.request_identifier);
+		napc_Writer_writeU16BE(response, q->meta.dns_request_identifier);
 		napc_Writer_writeU8(response, q->meta.state);
 
 		napc_Writer_writeChar(response, q->has_request ? 'y' : 'n');
