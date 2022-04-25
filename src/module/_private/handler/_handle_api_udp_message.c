@@ -96,7 +96,7 @@ void PV_ddns_handleAPIUDPMessage(
 
 	PV_ddns_useSharedBuffer(
 		instance,
-		"4k-buffer",
+		"1k-buffer-2",
 		&ctx,
 		_handleAPIRequest
 	);
@@ -109,7 +109,6 @@ static void _handleAPIRequest(
 ) {
 	struct api_request_context *ctx = context;
 
-	NAPC_ASSERT(buffer->size == 4096);
 	NAPC_ASSERT(instance->api.random_iv_ready);
 
 	// write operations should never fail
@@ -135,11 +134,13 @@ static void _handleAPIRequest(
 		1024 - napc_NFWriter_getCurrentOffset(&writer)
 	);
 
-	PV_AGF_ddns_handleAPICall(
+	bool result = PV_AGF_ddns_handleAPICall(
 		instance,
 		ctx->request_body,
 		&response_writer
 	);
+
+	PV_DDNS_DEBUG("handleAPICall returned %s", result ? "success" : "failure");
 
 	unsigned char *response = ((unsigned char *)buffer->data) + 32 + 16;
 	const char *hmac_key = instance->config.general.hashed_secret;

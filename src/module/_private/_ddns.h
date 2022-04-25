@@ -18,6 +18,7 @@
 
 	void PV_ddns_invalidateOldQueries(ddns__Instance *instance);
 	void PV_ddns_printDebugInformation(ddns__Instance *instance);
+	void PV_ddns_advertiseOnNetwork(ddns__Instance *instance);
 
 	void PV_ddns_useSharedBuffer(
 		ddns__Instance *instance, const char *label, void *context, void (*cb)(

@@ -6,10 +6,10 @@ function ddns_cli_main($args) {
 	if (!sizeof($args)) {
 		fwrite(STDERR, "Usage: ddns <call> [args]\n");
 		fwrite(STDERR, "\n");
-		fwrite(STDERR, "       ddns get_status --target ip:port --secret /path/to/secret [--json]\n");
-
-		fwrite(STDERR, "\n");
-		fwrite(STDERR, "       ddns get_config --target ip:port --secret /path/to/secret [--json]\n");
+		fwrite(STDERR, "       ddns get_queries --target ip:port --secret /path/to/secret [--json]\n");
+		fwrite(STDERR, "       ddns get_config  --target ip:port --secret /path/to/secret [--json]\n");
+		fwrite(STDERR, "       ddns set_debug   --target ip:port --secret /path/to/secret [--json]\n");
+		fwrite(STDERR, "       ddns clear_debug --target ip:port --secret /path/to/secret [--json]\n");
 
 		exit(2);
 	}
@@ -73,14 +73,20 @@ function ddns_cli_main($args) {
 			);
 		} break;
 
-		case "get_qhistory": {
-			handleGetQHistory(
+		case "get_queries": {
+			handleGetQueries(
 				$target_ip, $target_port, $secret, $wants_json
 			);
 		} break;
 
 		case "set_debug": {
 			handleSetDebug(
+				$target_ip, $target_port, $secret, $wants_json
+			);
+		} break;
+
+		case "clear_debug": {
+			handleClearDebug(
 				$target_ip, $target_port, $secret, $wants_json
 			);
 		} break;

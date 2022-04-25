@@ -35,6 +35,7 @@
 		napc_size debug_log_handler_index;
 
 		napc__Timer debug_print_timer;
+		napc__Timer network_advertisement_timer;
 
 		/**
 		 * UDP Sockets
@@ -46,7 +47,7 @@
 		/**
 		 * Queries
 		 */
-		ddns__Query queries[32];
+		ddns__Query queries[16];
 
 		/**
 		 * API
@@ -67,11 +68,11 @@
 		/**
 		 * Shared buffers
 		 */
-		char buffer_1k[1024];
-		bool buffer_1k_busy;
+		char buffer_1k_1[1024];
+		bool buffer_1k_1_busy;
 
-		char buffer_4k[4096];
-		bool buffer_4k_busy;
+		char buffer_1k_2[1024];
+		bool buffer_1k_2_busy;
 	} ddns__Instance;
 
 	void ddns_setup(

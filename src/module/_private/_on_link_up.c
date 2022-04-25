@@ -1,6 +1,12 @@
 #include <module/_private/_ddns.h>
 
 void PV_ddns_onLinkUp(ddns__Instance *instance) {
+	// init ethernet
+	napc_eth_setMACAddress(instance->config.network.mac_address);
+	napc_eth_setIPAddress(instance->config.network.address);
+	napc_eth_setSubnetMask(instance->config.network.netmask);
+	napc_eth_setGatewayAddress(instance->config.network.gateway);
+
 	instance->dns_udp_in = napc_UDP_createSocket(instance->config.dns.listen_port);
 	instance->networking_udp_out = napc_UDP_createSocket(instance->config.network.out_port);
 	instance->api_udp_in = napc_UDP_createSocket(instance->config.api.listen_port);

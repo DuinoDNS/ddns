@@ -2,12 +2,12 @@
 
 function ddns__setDebugAPICall($ip, $port, $secret, $mode) {
 	if ($mode) {
-		$mode = "set";
+		$mode = "set_debug";
 	} else {
-		$mode = "clear";
+		$mode = "clear_debug";
 	}
 
-	$response = ddns__sendRequest($ip, $port, $secret, "set_debug$mode");
+	$response = ddns__sendRequest($ip, $port, $secret, $mode);
 	var_dump($response);
 }
 

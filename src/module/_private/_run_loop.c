@@ -37,8 +37,8 @@ static void _handleUDPSocket(
 }
 
 void PV_ddns_runLoop(ddns__Instance *instance) {
-	PV_ddns_useSharedBuffer(instance, "1k-buffer", (void *)"dns", _handleUDPSocket);
-	PV_ddns_useSharedBuffer(instance, "1k-buffer", (void *)"networking", _handleUDPSocket);
+	PV_ddns_useSharedBuffer(instance, "1k-buffer-1", (void *)"dns", _handleUDPSocket);
+	PV_ddns_useSharedBuffer(instance, "1k-buffer-1", (void *)"networking", _handleUDPSocket);
 
 	if (!instance->api.random_iv_ready) {
 		bool result = napc_random_getRandomBytes(
@@ -50,11 +50,15 @@ void PV_ddns_runLoop(ddns__Instance *instance) {
 	}
 
 	if (instance->api.random_iv_ready) {
-		PV_ddns_useSharedBuffer(instance, "1k-buffer", (void *)"api", _handleUDPSocket);
+		PV_ddns_useSharedBuffer(instance, "1k-buffer-1", (void *)"api", _handleUDPSocket);
 	}
 
 	PV_ddns_invalidateOldQueries(instance);
 	PV_ddns_printDebugInformation(instance);
+
+	if (instance->config.discovery.enabled) {
+		PV_ddns_advertiseOnNetwork(instance);
+	}
 
 	napc_random_collectBytes();
 }

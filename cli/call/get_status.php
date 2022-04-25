@@ -1,7 +1,7 @@
 <?php
 
 function ddns__getStatusAPICall($ip, $port, $secret) {
-	$response = ddns__sendRequest($ip, $port, $secret, "get_config:dns");
+	$response = ddns__sendRequest($ip, $port, $secret, "get_queries");
 	$reader = new ddns__BinaryReader($response);
 
 	var_dump($response);
