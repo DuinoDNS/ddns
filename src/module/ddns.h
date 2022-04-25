@@ -34,7 +34,7 @@
 		bool debug_active;
 		napc_size debug_log_handler_index;
 
-		napc__Timer tmr;
+		napc__Timer debug_print_timer;
 
 		/**
 		 * UDP Sockets

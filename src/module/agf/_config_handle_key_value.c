@@ -3,7 +3,7 @@
  */
 #include <module/config/_private/_config.h>
 
-bool PV_ddns_Config_handleKeyValue(
+bool PV_AGF_ddns_Config_handleKeyValue(
     ddns__Config *config,
     const char *key,
     const char *value

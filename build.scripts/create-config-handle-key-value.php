@@ -11,7 +11,7 @@ $config_handle_kv_file .= "#include <module/config/_private/_config.h>\n";
 
 $config_handle_kv_file .= "\n";
 
-$config_handle_kv_file .= "bool PV_ddns_Config_handleKeyValue(\n";
+$config_handle_kv_file .= "bool PV_AGF_ddns_Config_handleKeyValue(\n";
 $config_handle_kv_file .= "    ddns__Config *config,\n";
 $config_handle_kv_file .= "    const char *key,\n";
 $config_handle_kv_file .= "    const char *value\n";

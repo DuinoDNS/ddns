@@ -11,7 +11,7 @@ $config_to_string_file .= "#include <module/config/_private/_config.h>\n";
 
 $config_to_string_file .= "\n";
 
-$config_to_string_file .= "bool PV_ddns_Config_toString(\n";
+$config_to_string_file .= "bool PV_AGF_ddns_Config_toString(\n";
 $config_to_string_file .= "    const ddns__Config *config,\n";
 $config_to_string_file .= "    const char *desired_section,\n";
 $config_to_string_file .= "    char *buf,\n";

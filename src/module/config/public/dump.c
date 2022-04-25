@@ -3,5 +3,5 @@
 void ddns_Config_dump(
 	const ddns__Config *config
 ) {
-	PV_ddns_Config_dump(config);
+	PV_AGF_ddns_Config_dump(config);
 }

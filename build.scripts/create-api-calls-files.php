@@ -12,7 +12,7 @@ $header_file = "#if !defined(PV_DDNS_API_CALLS_h)
 $handle_call_file  = (require __DIR__."/auto-gen-header-comment.php")();
 $handle_call_file .= "#include <module/_private/_ddns.h>\n";
 $handle_call_file .= "#include <module/agf/_api_calls.h>\n\n";
-$handle_call_file .= "bool PV_ddns_handleAPICall(
+$handle_call_file .= "bool PV_AGF_ddns_handleAPICall(
     ddns__Instance *instance,
     const char *request,
     napc__Writer *response

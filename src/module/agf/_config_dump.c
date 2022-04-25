@@ -3,7 +3,7 @@
  */
 #include <module/config/_private/_config.h>
 
-void PV_ddns_Config_dump(
+void PV_AGF_ddns_Config_dump(
     const ddns__Config *config
 ) {
     PV_DDNS_CONFIG_INFO(" ");

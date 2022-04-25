@@ -11,7 +11,7 @@ $config_dump_file .= "#include <module/config/_private/_config.h>\n";
 
 $config_dump_file .= "\n";
 
-$config_dump_file .= "void PV_ddns_Config_dump(\n";
+$config_dump_file .= "void PV_AGF_ddns_Config_dump(\n";
 $config_dump_file .= "    const ddns__Config *config\n";
 $config_dump_file .= ") {\n";
 

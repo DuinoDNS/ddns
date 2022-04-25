@@ -47,7 +47,7 @@ void ddns_Config_fromString(
 				sizeof(config->general.secret)
 			);
 		} else {
-			PV_ddns_Config_handleKeyValue(config, _key_buffer, _value_buffer);
+			PV_AGF_ddns_Config_handleKeyValue(config, _key_buffer, _value_buffer);
 		}
 	}
 

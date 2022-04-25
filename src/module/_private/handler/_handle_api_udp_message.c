@@ -135,7 +135,7 @@ static void _handleAPIRequest(
 		1024 - napc_NFWriter_getCurrentOffset(&writer)
 	);
 
-	PV_ddns_handleAPICall(
+	PV_AGF_ddns_handleAPICall(
 		instance,
 		ctx->request_body,
 		&response_writer
@@ -157,4 +157,7 @@ static void _handleAPIRequest(
 		buffer->data,
 		1024
 	);
+
+	// todo: remove and test
+	instance->api.random_iv_ready = false;
 }

@@ -7,7 +7,7 @@
 	/**
 	 * Will be automatically created by create-config-handle-key-value.php
 	 */
-	bool PV_ddns_Config_handleKeyValue(
+	bool PV_AGF_ddns_Config_handleKeyValue(
 		ddns__Config *config,
 		const char *key,
 		const char *value
@@ -16,14 +16,14 @@
 	/**
 	 * Will be automatically created by create-config-dump.php
 	 */
-	void PV_ddns_Config_dump(
+	void PV_AGF_ddns_Config_dump(
 		const ddns__Config *config
 	);
 
 	/**
 	 * Will be automatically created by create-config-to-string.php
 	 */
-	bool PV_ddns_Config_toString(
+	bool PV_AGF_ddns_Config_toString(
 		const ddns__Config *config,
 		const char *desired_section,
 		char *buf,

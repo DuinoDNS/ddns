@@ -12,7 +12,7 @@ function ddns__sendRequest($ip, $port, $secret, $request_body) {
 	$response = ddns__decryptAnswer($answer, $secret);
 
 	if ($response["request_identifier"] !== $request["request_identifier"]) {
-		throw new Error("Request identifier do not match!");
+		throw new Error("Request identifier do not match up!");
 	}
 
 	return $response["message"];

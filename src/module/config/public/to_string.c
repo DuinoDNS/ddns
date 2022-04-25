@@ -6,5 +6,5 @@ bool ddns_Config_toString(
 	char *buf,
 	napc_size buf_size
 ) {
-	return PV_ddns_Config_toString(config, desired_section, buf, buf_size);
+	return PV_AGF_ddns_Config_toString(config, desired_section, buf, buf_size);
 }

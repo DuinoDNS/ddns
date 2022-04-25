@@ -4,7 +4,7 @@
 #include <module/_private/_ddns.h>
 #include <module/agf/_api_calls.h>
 
-bool PV_ddns_handleAPICall(
+bool PV_AGF_ddns_handleAPICall(
     ddns__Instance *instance,
     const char *request,
     napc__Writer *response

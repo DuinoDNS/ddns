@@ -16,6 +16,9 @@
 	void PV_ddns_onLinkDown(ddns__Instance *instance);
 	void PV_ddns_runLoop(ddns__Instance *instance);
 
+	void PV_ddns_invalidateOldQueries(ddns__Instance *instance);
+	void PV_ddns_printDebugInformation(ddns__Instance *instance);
+
 	void PV_ddns_useSharedBuffer(
 		ddns__Instance *instance, const char *label, void *context, void (*cb)(
 			ddns__Instance *instance,
@@ -56,7 +59,7 @@
 		ddns__Instance *instance, napc__IPv4Participant *client, napc__Buffer buffer
 	);
 
-	bool PV_ddns_handleAPICall(
+	bool PV_AGF_ddns_handleAPICall(
 		ddns__Instance *instance,
 		const char *request,
 		napc__Writer *response
