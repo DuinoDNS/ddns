@@ -62,10 +62,9 @@
 		const ddns__Config *config
 	);
 
-	bool ddns_Config_toString(
+	bool ddns_Config_write(
 		const ddns__Config *config,
 		const char *desired_section,
-		char *buf,
-		napc_size buf_size
+		napc__Writer *writer
 	) NAPC_FN_WARNUNUSED_RET();
 #endif
