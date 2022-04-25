@@ -6,6 +6,7 @@ function ddns_cli_main($args) {
 	if (!sizeof($args)) {
 		fwrite(STDERR, "Usage: ddns <call> [args]\n");
 		fwrite(STDERR, "\n");
+		fwrite(STDERR, "       ddns get_status  --target ip:port --secret /path/to/secret [--json]\n");
 		fwrite(STDERR, "       ddns get_queries --target ip:port --secret /path/to/secret [--json]\n");
 		fwrite(STDERR, "       ddns get_config  --target ip:port --secret /path/to/secret [--json]\n");
 		fwrite(STDERR, "       ddns set_debug   --target ip:port --secret /path/to/secret [--json]\n");

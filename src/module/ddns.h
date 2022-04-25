@@ -36,6 +36,7 @@
 
 		napc__Timer debug_print_timer;
 		napc__Timer network_advertisement_timer;
+		napc__Timer statistics_timer;
 
 		/**
 		 * UDP Sockets
@@ -63,6 +64,12 @@
 		struct {
 			napc_u32 incoming_queries;
 			napc_u32 completed_queries;
+
+			napc_u16 _current_ticks_count;
+			napc_u16 _current_queries_count;
+
+			napc_u16 ticks_per_second;
+			napc_u16 queries_per_second;
 		} stats;
 
 		/**

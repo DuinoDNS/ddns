@@ -5,6 +5,11 @@ bool PV_ddns_handleAPICall_get_queries(
 	const char *request,
 	napc__Writer *response
 ) {
+	NAPC_IGNORE_VALUE(request);
+
+	napc_Writer_writeU32BE(response, instance->stats.incoming_queries);
+	napc_Writer_writeU32BE(response, instance->stats.completed_queries);
+
 	napc_Writer_writeU8(response, NAPC_ARRAY_ELEMENTS(instance->queries));
 
 	for (napc_size i = 0; i < NAPC_ARRAY_ELEMENTS(instance->queries); ++i) {

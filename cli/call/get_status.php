@@ -1,52 +1,34 @@
 <?php
 
 function ddns__getStatusAPICall($ip, $port, $secret) {
-	$response = ddns__sendRequest($ip, $port, $secret, "get_queries");
+	$response = ddns__sendRequest($ip, $port, $secret, "get_status");
 	$reader = new ddns__BinaryReader($response);
 
-	var_dump($response);
+/*
+	napc_Writer_writeU32BE(response, instance->stats.incoming_queries);
+	napc_Writer_writeU32BE(response, instance->stats.completed_queries);
 
-	$uptime = $reader->readU32BE();
-	$upstream_latency = $reader->readU32BE();
-	if ($upstream_latency === 0xFFFFFFFF) {
-		$upstream_latency = -1;
-	}
+	napc_Writer_writeU16BE(response, instance->stats.ticks_per_second);
+	napc_Writer_writeU16BE(response, instance->stats.queries_per_second);
 
-	$dns_queries_total = $reader->readU32BE();
-	$dns_queries_served = $reader->readU32BE();
-	$dns_queries_timeout = $reader->readU32BE();
-	$dns_queries_invalid = $reader->readU32BE();
-	$dns_queries_throughput = $reader->readU32BE();
-	$ticks_per_second = $reader->readU32BE();
-	$random_bytes_available = $reader->readU32BE();
+	napc_u16 random_bytes_available = napc_random_getAvailableBytes();
 
-	$metric_type = $reader->readU32BE();
-	$metric_values = [];
-	$n_entries = $reader->readU16BE();
+	napc_Writer_writeU16BE(response, random_bytes_available);
+	napc_Writer_writeU32BE(response, napc_getUptime());
+*/
 
-	for ($i = 0; $i < $n_entries; ++$i) {
-		$metric_value = $reader->readU16BE();
+	$status = [];
 
-		if ($metric_value === 0xFFFF) $metric_value = -1;
+	$status["incoming_queries"] = $reader->readU32BE();
+	$status["completed_queries"] = $reader->readU32BE();
 
-		array_push($metric_values, $metric_value);
-	}
+	$status["ticks_per_second"] = $reader->readU16BE();
+	$status["queries_per_second"] = $reader->readU16BE();
 
-	return [
-		"uptime" => $uptime,
-		"upstream_latency" => $upstream_latency,
-		"dns_queries" => [
-			"total" => $dns_queries_total,
-			"served" => $dns_queries_served,
-			"timeout" => $dns_queries_timeout,
-			"invalid" => $dns_queries_invalid,
-			"throughput" => $dns_queries_throughput
-		],
-		"ticks_per_second" => $ticks_per_second,
-		"random_bytes_available" => $random_bytes_available,
-		"metric_type" => $metric_type,
-		"metric_values" => $metric_values
-	];
+	$status["random_bytes_available"] = $reader->readU16BE();
+	$status["uptime"] = $reader->readU32BE();
+
+	return $status;
 }
 
 ?>

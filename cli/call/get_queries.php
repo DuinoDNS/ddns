@@ -4,6 +4,9 @@ function ddns__getQueriesAPICall($ip, $port, $secret) {
 	$response = ddns__sendRequest($ip, $port, $secret, "get_queries");
 	$reader = new ddns__BinaryReader($response);
 
+	$incoming_queries = $reader->readU32BE();
+	$completed_queries = $reader->readU32BE();
+
 	$n_entries = $reader->readU8();
 	$entries = [];
 
@@ -39,7 +42,11 @@ function ddns__getQueriesAPICall($ip, $port, $secret) {
 		];
 	}
 
-	return $entries;
+	return [
+		"incoming" => $incoming_queries,
+		"completed" => $completed_queries,
+		"entries" => $entries
+	];
 }
 
 ?>

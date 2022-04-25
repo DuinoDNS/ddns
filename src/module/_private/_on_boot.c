@@ -5,4 +5,10 @@ void PV_ddns_onBoot(ddns__Instance *instance) {
 	napc_Timer_start(&instance->debug_print_timer);
 
 	napc_Timer_init(&instance->network_advertisement_timer, 5000);
+
+	napc_Timer_init(&instance->statistics_timer, 1000);
+	napc_Timer_start(&instance->statistics_timer);
+
+	instance->stats._current_ticks_count = 0;
+	instance->stats._current_queries_count = 0;
 }
