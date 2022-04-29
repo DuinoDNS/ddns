@@ -11,6 +11,7 @@ bool PV_ddns_handleAPICall_get_status(
 
 	napc_Writer_writeU32BE(response, instance->stats.incoming_queries);
 	napc_Writer_writeU32BE(response, instance->stats.completed_queries);
+	napc_Writer_writeU32BE(response, instance->stats.truncated_responses);
 
 	napc_Writer_writeU16BE(response, instance->stats.ticks_per_second);
 	napc_Writer_writeU16BE(response, instance->stats.queries_per_second);

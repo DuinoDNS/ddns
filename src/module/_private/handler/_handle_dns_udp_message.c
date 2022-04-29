@@ -76,7 +76,9 @@ void PV_ddns_handleDNSUDPMessage(
 	head->meta_initialized = true;
 
 	head->has_request = napc_DNS_parseRequest(&head->request, buffer.data, buffer.size);
-	head->has_response = false;
+
+	// 29.04.2022: leaving out response
+	//head->has_response = false;
 
 	// try to resolve query..
 	if (head->has_request) {
@@ -106,7 +108,8 @@ void PV_ddns_handleDNSUDPMessage(
 			);
 
 			head->meta.state = DDNS_QUERY_STATE_COMPLETED;
-			head->has_response = false;
+			// 29.04.2022: leaving out response
+			//head->has_response = false;
 
 			instance->stats.completed_queries++;
 

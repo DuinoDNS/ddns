@@ -21,9 +21,6 @@
 
 		bool has_request;
 		napc__DNSRequest request;
-
-		bool has_response;
-		napc__DNSResponse response;
 	} ddns__Query;
 
 	typedef struct ddns__Instance {
@@ -69,6 +66,7 @@
 		struct {
 			napc_u32 incoming_queries;
 			napc_u32 completed_queries;
+			napc_u32 truncated_responses;
 
 			napc_u16 _current_ticks_count;
 			napc_u16 _current_queries_count;
