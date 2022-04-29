@@ -20,7 +20,7 @@ void ddns_setup(
 	 */
 	ddns_Config_setDefaults(&instance->config);
 
-	instance->needs_initalisation = true;
+	instance->needs_initialization = true;
 	instance->config_file_path = config_file_path;
 	instance->records_file_path = records_file_path;
 

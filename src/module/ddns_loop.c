@@ -13,7 +13,7 @@ static void _readLocalRecordsFile(
 );
 
 void ddns_loop(ddns__Instance *instance) {
-	if (instance->needs_initalisation) {
+	if (instance->needs_initialization) {
 		PV_ddns_useSharedBuffer(instance, "1k-buffer-1", NULL, _readConfigFile);
 		PV_ddns_useSharedBuffer(instance, "1k-buffer-1", NULL, _readLocalRecordsFile);
 
@@ -21,7 +21,7 @@ void ddns_loop(ddns__Instance *instance) {
 		ddns_Config_dump(&instance->config);
 		ddns_LocalRecords_dump(&instance->local_records);
 
-		instance->needs_initalisation = false;
+		instance->needs_initialization = false;
 	}
 
 	bool eth_link_status = napc_eth_getLinkStatus();
