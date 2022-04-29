@@ -22,6 +22,10 @@ bool PV_ddns_handleAPICall_get_queries(
 		napc_Writer_writeU16BE(response, q->meta.dns_request_identifier);
 		napc_Writer_writeU8(response, q->meta.state);
 
+		if (q->meta.state == DDNS_QUERY_STATE_COMPLETED) {
+			napc_Writer_writeU32BE(response, q->meta.completed.query_latency);
+		}
+
 		napc_Writer_writeChar(response, q->has_request ? 'y' : 'n');
 
 		if (!q->has_request) continue;

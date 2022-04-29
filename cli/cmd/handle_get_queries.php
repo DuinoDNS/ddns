@@ -7,7 +7,7 @@ function handleGetQueries($ip, $port, $secret, $args) {
 		printf("\nQueries (completed / incoming) : %d / %d\n", $queries["completed"], $queries["incoming"]);
 		printf("Reliability (%%)                : %3d %%\n\n", (int)(($queries["incoming"] / $queries["completed"]) * 100));
 
-		$fmt = "%3s %-18s | %-16s | %-40s | %-16s\n";
+		$fmt = "%3s %-18s | %-16s | %-40s | %-32s | %-16s\n";
 
 		printf(
 			$fmt,
@@ -15,7 +15,8 @@ function handleGetQueries($ip, $port, $secret, $args) {
 			"Request Identifier",
 			"Status",
 			"Request (name)",
-			"Request (type)"
+			"Request (type)",
+			"Latency"
 		);
 
 		$i = 1;
@@ -35,7 +36,8 @@ function handleGetQueries($ip, $port, $secret, $args) {
 				dechex($query["request_identifier"]),
 				$query["state"],
 				$request_name,
-				$request_type
+				$request_type,
+				$query["query_latency"] !== NULL ? $query["query_latency"]."ms" : "-"
 			);
 
 			++$i;

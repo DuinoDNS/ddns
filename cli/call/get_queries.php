@@ -24,6 +24,11 @@ function ddns__getQueriesAPICall($ip, $port, $secret) {
 			case 3: $state = "timeout"; break;
 		}
 
+		$query_latency = NULL;
+		if ($state === "completed") {
+			$query_latency = $reader->readU32BE();
+		}
+
 		$has_request = $reader->readChar() === "y";
 		$request = NULL;
 
@@ -38,7 +43,8 @@ function ddns__getQueriesAPICall($ip, $port, $secret) {
 		$entries[] = [
 			"request_identifier" => $request_identifier,
 			"state" => $state,
-			"request" => $request
+			"request" => $request,
+			"query_latency" => $query_latency
 		];
 	}
 

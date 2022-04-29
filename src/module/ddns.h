@@ -17,6 +17,10 @@
 			napc_time received_at;
 			napc__IPv4Participant requester;
 			napc_u8 state;
+
+			struct {
+				napc_time query_latency;
+			} completed;
 		} meta;
 
 		bool has_request;

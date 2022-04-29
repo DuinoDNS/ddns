@@ -39,6 +39,10 @@ void PV_ddns_handleNetworkingUDPMessage(
 		PV_DDNS_ERROR("Query already in COMPLETED state.");
 
 		return;
+	} else if (q->meta.state == DDNS_QUERY_STATE_TIMEOUT) {
+		PV_DDNS_ERROR("Query already in TIMEOUT state.");
+
+		return;
 	}
 
 	NAPC_ASSERT(q->meta_initialized);
@@ -55,5 +59,6 @@ void PV_ddns_handleNetworkingUDPMessage(
 	);
 
 	q->meta.state = DDNS_QUERY_STATE_COMPLETED;
+	q->meta.completed.query_latency = napc_getTimeSinceBoot() - q->meta.received_at;
 	instance->stats.completed_queries++;
 }

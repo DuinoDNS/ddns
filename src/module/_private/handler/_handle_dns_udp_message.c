@@ -71,6 +71,7 @@ void PV_ddns_handleDNSUDPMessage(
 	ddns__Query *head = &instance->queries[0];
 
 	head->meta.requester = *client;
+	head->meta.received_at = napc_getTimeSinceBoot();
 	head->meta.dns_request_identifier = dns_header.request_identifier;
 	head->meta.state = DDNS_QUERY_STATE_INITIALIZED;
 	head->meta_initialized = true;
@@ -108,6 +109,7 @@ void PV_ddns_handleDNSUDPMessage(
 			);
 
 			head->meta.state = DDNS_QUERY_STATE_COMPLETED;
+			head->meta.completed.query_latency = 0;
 			// 29.04.2022: leaving out response
 			//head->has_response = false;
 
