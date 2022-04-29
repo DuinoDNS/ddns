@@ -9,7 +9,7 @@
         napc__Writer *response
     );
 
-    bool PV_ddns_handleAPICall_get_config_section(
+    bool PV_ddns_handleAPICall_get_config(
         ddns__Instance *instance,
         const char *request,
         napc__Writer *response

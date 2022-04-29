@@ -64,12 +64,6 @@ function ddns_cli_main($args) {
 			);
 		} break;
 
-		case "get_config_section": {
-			handleGetConfigSection(
-				$target_ip, $target_port, $secret, $api_call_args
-			);
-		} break;
-
 		case "get_config": {
 			handleGetConfig(
 				$target_ip, $target_port, $secret, $api_call_args

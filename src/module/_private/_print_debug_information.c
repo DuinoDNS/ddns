@@ -42,6 +42,10 @@ void PV_ddns_printDebugInformation(ddns__Instance *instance) {
 					q->request.query.qtype
 				);
 			}
+
+			if (q->meta.state == DDNS_QUERY_STATE_COMPLETED) {
+				napc_printf(" (latency=%" NAPC_TIME_PRINTF "ms) ", q->meta.completed.query_latency);
+			}
 		}
 
 		napc_printf("\n");

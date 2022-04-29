@@ -54,11 +54,11 @@ void PV_ddns_handleNetworkingUDPMessage(
 		instance->stats.truncated_responses++;
 	}
 
-	napc_UDP_send(
-		instance->dns_udp_in, q->meta.requester, buffer.data, buffer.size
-	);
-
 	q->meta.state = DDNS_QUERY_STATE_COMPLETED;
 	q->meta.completed.query_latency = napc_getTimeSinceBoot() - q->meta.received_at;
 	instance->stats.completed_queries++;
+
+	napc_UDP_send(
+		instance->dns_udp_in, q->meta.requester, buffer.data, buffer.size
+	);
 }

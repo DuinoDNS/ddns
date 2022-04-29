@@ -1,21 +1,7 @@
 <?php
 
 function handleGetConfig($ip, $port, $secret, $args) {
-	$config_sections = [
-		"general", "debug", "network", "upstream", "api", "dns"
-	];
-
-	$config = [];
-
-	foreach ($config_sections as $config_section) {
-		$values = ddns__getConfigSectionAPICall($ip, $port, $secret, $config_section);
-
-		foreach ($values as $key => $value) {
-			$tmp = explode(".", $key, 2);
-
-			$config[$config_section][$tmp[1]] = $value;
-		}
-	}
+	$config = ddns__getConfigAPICall($ip, $port, $secret);
 
 	if (!array_key_exists("--json", $args["named"])) {
 		foreach ($config as $section => $values) {
