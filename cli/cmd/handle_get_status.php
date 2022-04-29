@@ -8,15 +8,16 @@ function handleGetStatus($ip, $port, $secret, $args) {
 			printf("*** DEBUGGING ACTIVE ***\n\n");
 		}
 
-		printf("Uptime                 : %5u s\n", $status["uptime"]);
+		printf("Uptime                  : %5u s\n", $status["uptime"]);
 		//printf("Upstream latency       : %5d ms\n", $status["upstream_latency"]);
 		printf("\n");
-		printf("DNS Queries total      : %5u\n", $status["incoming_queries"]);
-		printf("DNS Queries served     : %5u\n", $status["completed_queries"]);
+		printf("DNS Queries total       : %5u\n", $status["incoming_queries"]);
+		printf("DNS Queries served      : %5u\n", $status["completed_queries"]);
+		printf("Truncated DNS Responses : %5u\n", $status["truncated_responses"]);
 		printf("\n");
-		printf("Ticks per second       : %5u T/s\n", $status["ticks_per_second"]);
+		printf("Ticks per second        : %5u T/s\n", $status["ticks_per_second"]);
 		printf("\n");
-		printf("Random bytes available : %5u bytes\n", $status["random_bytes_available"]);
+		printf("Random bytes available  : %5u bytes\n", $status["random_bytes_available"]);
 	//	printf("\n");
 	//	printf("Tracked metric         : %5u\n", $status["metric_type"]);
 	//	printf("Tracked metric HEAD    : %5u\n", $status["metric_values"][0]);

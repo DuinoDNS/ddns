@@ -43,7 +43,12 @@ void PV_ddns_handleNetworkingUDPMessage(
 
 	NAPC_ASSERT(q->meta_initialized);
 
-	q->has_response = napc_DNS_parseResponse(&q->response, buffer.data, buffer.size);
+	// 29.04.2022: leaving out response
+	// q->has_response = napc_DNS_parseResponse(&q->response, buffer.data, buffer.size);
+
+	if (dns_header.truncated) {
+		instance->stats.truncated_responses++;
+	}
 
 	napc_UDP_send(
 		instance->dns_udp_in, q->meta.requester, buffer.data, buffer.size

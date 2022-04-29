@@ -9,6 +9,10 @@ void PV_ddns_onBoot(ddns__Instance *instance) {
 	napc_Timer_init(&instance->statistics_timer, 1000);
 	napc_Timer_start(&instance->statistics_timer);
 
+	instance->stats.incoming_queries = 0;
+	instance->stats.completed_queries = 0;
+	instance->stats.truncated_responses = 0;
+
 	instance->stats._current_ticks_count = 0;
 	instance->stats._current_queries_count = 0;
 }
