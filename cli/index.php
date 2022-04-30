@@ -8,6 +8,18 @@ function ddns_cyan($str) {
 	return "\033[1;36m$str\033[0;0m";
 }
 
+function ddns_yellow($str) {
+	return "\033[1;33m$str\033[0;0m";
+}
+
+function ddns_green($str) {
+	return "\033[1;32m$str\033[0;0m";
+}
+
+function ddns_red($str) {
+	return "\033[1;31m$str\033[0;0m";
+}
+
 function ddns_cli_main($args) {
 	array_shift($args);
 
