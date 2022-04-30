@@ -19,4 +19,6 @@ void PV_ddns_onLinkUp(ddns__Instance *instance) {
 	}
 
 	instance->api.random_iv_ready = false;
+
+	instance->stats.avg_upstream_latency = 0;
 }

@@ -54,9 +54,23 @@ void PV_ddns_handleNetworkingUDPMessage(
 		instance->stats.truncated_responses++;
 	}
 
+	napc_time query_latency = napc_getTimeSinceBoot() - q->meta.received_at;
+
 	q->meta.state = DDNS_QUERY_STATE_COMPLETED;
-	q->meta.completed.query_latency = napc_getTimeSinceBoot() - q->meta.received_at;
+	q->meta.completed.query_latency = query_latency;
 	instance->stats.completed_queries++;
+
+	// add latency to statistics
+	if (instance->stats.avg_upstream_latency == 0) {
+		instance->stats.avg_upstream_latency = query_latency;
+	} else {
+		double tmp = instance->stats.avg_upstream_latency;
+
+		tmp += query_latency;
+		tmp /= 2;
+
+		instance->stats.avg_upstream_latency = tmp;
+	}
 
 	napc_UDP_send(
 		instance->dns_udp_in, q->meta.requester, buffer.data, buffer.size

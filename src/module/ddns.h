@@ -77,6 +77,8 @@
 
 			napc_u16 ticks_per_second;
 			napc_u16 queries_per_second;
+
+			napc_u16 avg_upstream_latency;
 		} stats;
 
 		/**

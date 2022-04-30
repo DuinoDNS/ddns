@@ -1,7 +1,7 @@
 #include <module/_private/_ddns.h>
 
-static const char *_sections[6] = {
-	"general", "debug", "network", "upstream", "api", "dns"
+static const char *_sections[7] = {
+	"general", "debug", "network", "upstream", "api", "discovery", "dns"
 }; // @static
 
 bool PV_ddns_handleAPICall_get_config(

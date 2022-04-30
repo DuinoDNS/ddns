@@ -16,6 +16,8 @@ bool PV_ddns_handleAPICall_get_status(
 	napc_Writer_writeU16BE(response, instance->stats.ticks_per_second);
 	napc_Writer_writeU16BE(response, instance->stats.queries_per_second);
 
+	napc_Writer_writeU16BE(response, instance->stats.avg_upstream_latency);
+
 	napc_u16 random_bytes_available = napc_random_getAvailableBytes();
 
 	napc_Writer_writeU16BE(response, random_bytes_available);

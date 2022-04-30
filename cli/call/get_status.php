@@ -14,6 +14,8 @@ function ddns__getStatusAPICall($ip, $port, $secret) {
 	$status["ticks_per_second"] = $reader->readU16BE();
 	$status["queries_per_second"] = $reader->readU16BE();
 
+	$status["upstream_latency"] = $reader->readU16BE();
+
 	$status["random_bytes_available"] = $reader->readU16BE();
 	$status["uptime"] = $reader->readU32BE();
 

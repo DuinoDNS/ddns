@@ -9,7 +9,7 @@ function handleGetStatus($ip, $port, $secret, $args) {
 		}
 
 		printf("Uptime                  : %5u s\n", $status["uptime"]);
-		//printf("Upstream latency       : %5d ms\n", $status["upstream_latency"]);
+		printf("Upstream latency        : %5d ms\n", $status["upstream_latency"]);
 		printf("\n");
 		printf("DNS Queries total       : %5u\n", $status["incoming_queries"]);
 		printf("DNS Queries served      : %5u\n", $status["completed_queries"]);
