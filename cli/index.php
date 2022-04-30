@@ -1,19 +1,29 @@
 <?php
 
+function ddns_gray($str) {
+	return "\033[0;90m$str\033[0;0m";
+}
+
+function ddns_cyan($str) {
+	return "\033[1;36m$str\033[0;0m";
+}
+
 function ddns_cli_main($args) {
 	array_shift($args);
 
 	if (2 >= sizeof($args)) {
-		fwrite(STDERR, "Usage: ddns <target> <secret> <cmd> [args]\n");
+		fwrite(STDERR, "Usage: ddns ip[:port] /path/to/secret <cmd> [args]\n");
+		fwrite(STDERR, "\n    Status\n\n");
+		fwrite(STDERR, "           ddns ".ddns_gray("ip[:port] /path/to/secret")." ".ddns_cyan("get_status")." [--json]\n");
+		fwrite(STDERR, "           ddns ".ddns_gray("ip[:port] /path/to/secret")." ".ddns_cyan("get_queries")." [--json]\n");
+		fwrite(STDERR, "\n    Configuration\n\n");
+		fwrite(STDERR, "           ddns ".ddns_gray("ip[:port] /path/to/secret")." ".ddns_cyan("get_config")." [--json]\n");
+		fwrite(STDERR, "           ddns ".ddns_gray("ip[:port] /path/to/secret")." ".ddns_cyan("update_config")." /path/to/config\n");
+		fwrite(STDERR, "\n    Debugging\n\n");
+		fwrite(STDERR, "           ddns ".ddns_gray("ip[:port] /path/to/secret")." ".ddns_cyan("set_debug")."\n");
+		fwrite(STDERR, "           ddns ".ddns_gray("ip[:port] /path/to/secret")." ".ddns_cyan("clear_debug")."\n");
+		fwrite(STDERR, "           ddns ".ddns_gray("ip[:port] /path/to/secret")." ".ddns_cyan("restart")."\n");
 		fwrite(STDERR, "\n");
-		fwrite(STDERR, "       ddns ip:port /path/to/secret get_status [--json]\n");
-		fwrite(STDERR, "       ddns ip:port /path/to/secret get_queries [--json]\n");
-		fwrite(STDERR, "       ddns ip:port /path/to/secret get_config [--json]\n");
-		fwrite(STDERR, "\n");
-		fwrite(STDERR, "       ddns ip:port /path/to/secret restart\n");
-		fwrite(STDERR, "\n");
-		fwrite(STDERR, "       ddns ip:port /path/to/secret set_debug\n");
-		fwrite(STDERR, "       ddns ip:port /path/to/secret clear_debug\n");
 
 		exit(2);
 	}
