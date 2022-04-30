@@ -45,8 +45,6 @@ void ddns_Config_setDefaults(
 	config->upstream.enabled = true;
 	_setIPAddress(config->upstream.address, "1.1.1.1");
 	config->upstream.port = 53;
-	config->upstream.ping_port = 6666;
-	config->upstream.ping_interval = 4000;
 	config->upstream.timeout = 125;
 
 	/**

@@ -52,6 +52,13 @@ bool PV_AGF_ddns_handleAPICall(
         return PV_ddns_handleAPICall_restart(instance, body, response);
     }
 
+    if (napc_memeql(request, "save_config", napc_strlen("save_config"))) {
+        const char *body = request + napc_strlen("save_config");
+
+        PV_DDNS_DEBUG("Handling API Call 'save_config'");
+        return PV_ddns_handleAPICall_save_config(instance, body, response);
+    }
+
     if (napc_memeql(request, "set_debug", napc_strlen("set_debug"))) {
         const char *body = request + napc_strlen("set_debug");
 

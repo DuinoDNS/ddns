@@ -1,21 +1,30 @@
+# General
 general.secret,my_secret
 general.config_lock,false
 general.tracked_metric,0
+
+# Debug
 debug.ip,127.0.0.1
 debug.port,9999
 debug.level,0
+
+# Network
 network.mac_address,54:E0:61:84:5F:BD
 network.address,10.0.0.55
 network.netmask,255.255.255.0
 network.gateway,10.0.0.1
 network.out_port,5656
+
+# Upstream
 upstream.enabled,true
 upstream.address,1.1.1.1
 upstream.port,53
 upstream.timeout,250
+
+# API
 api.enabled,true
 api.listen_port,9090
-statistics.tracked_metric,1
-discovery.enabled,true
-dns.listen_port,4443
+
+# DNS
+dns.listen_port,8853
 dns.local_ttl,0

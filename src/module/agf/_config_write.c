@@ -89,14 +89,6 @@ bool PV_AGF_ddns_Config_write(
         if (!napc_Writer_writeStringFormat(writer, "%" NAPC_U16_PRINTF, config->upstream.port)) return false;
         if (!napc_Writer_writeChar(writer, '\n')) return false;
 
-        if (!napc_Writer_writeString(writer, "upstream.ping_port,")) return false;
-        if (!napc_Writer_writeStringFormat(writer, "%" NAPC_U16_PRINTF, config->upstream.ping_port)) return false;
-        if (!napc_Writer_writeChar(writer, '\n')) return false;
-
-        if (!napc_Writer_writeString(writer, "upstream.ping_interval,")) return false;
-        if (!napc_Writer_writeStringFormat(writer, "%" NAPC_U16_PRINTF, config->upstream.ping_interval)) return false;
-        if (!napc_Writer_writeChar(writer, '\n')) return false;
-
         if (!napc_Writer_writeString(writer, "upstream.timeout,")) return false;
         if (!napc_Writer_writeStringFormat(writer, "%" NAPC_U16_PRINTF, config->upstream.timeout)) return false;
         if (!napc_Writer_writeChar(writer, '\n')) return false;

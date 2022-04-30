@@ -1,9 +1,5 @@
 #include <module/_private/_ddns.h>
 
-static const char *_sections[7] = {
-	"general", "debug", "network", "upstream", "api", "discovery", "dns"
-}; // @static
-
 bool PV_ddns_handleAPICall_get_config(
 	ddns__Instance *instance,
 	const char *request,
@@ -11,13 +7,18 @@ bool PV_ddns_handleAPICall_get_config(
 ) {
 	NAPC_IGNORE_VALUE(request);
 
-	for (napc_size i = 0; i < NAPC_ARRAY_ELEMENTS(_sections); ++i) {
+	for (napc_size i = 0; true ; ++i) {
+		const char *config_section = ddns_Config_getSections()[i];
+
+		if (!config_section) break;
+
 		bool result = ddns_Config_write(
-			&instance->config, _sections[i], response
+			&instance->config, config_section, response
 		);
 
 		if (!result) return false;
 	}
+
 
 	return true;
 }

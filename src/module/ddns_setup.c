@@ -39,7 +39,9 @@ void ddns_setup(
 	instance->config_file_path = config_file_path;
 	instance->records_file_path = records_file_path;
 
-	instance->wants_reset = false;
+	instance->request.network_reset = false;
+	instance->request.sync_config_to_disk = false;
+	instance->request.sync_records_to_disk = false;
 
 	/**
 	 * This function is only called ONCE in the program's lifecycle

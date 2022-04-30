@@ -20,8 +20,6 @@
 		"enabled": "bool",
 		"address": "_ip_address",
 		"port": "napc_u16",
-		"ping_port": "napc_u16",
-		"ping_interval": "napc_u16",
 		"timeout": "napc_u16"
 	},
 	"statistics": {

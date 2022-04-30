@@ -39,6 +39,12 @@
         napc__Writer *response
     );
 
+    bool PV_ddns_handleAPICall_save_config(
+        ddns__Instance *instance,
+        const char *request,
+        napc__Writer *response
+    );
+
     bool PV_ddns_handleAPICall_set_debug(
         ddns__Instance *instance,
         const char *request,

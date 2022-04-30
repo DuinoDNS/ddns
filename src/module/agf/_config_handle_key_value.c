@@ -132,26 +132,6 @@ bool PV_AGF_ddns_Config_handleKeyValue(
         }
     }
 
-    if (napc_streqli(key, "upstream.ping_port")) {
-        napc_u16 tmp;
-        if (napc_parser_parseDecimalNumberU16(value, &tmp)) {
-            config->upstream.ping_port = tmp;
-            return true;
-        } else {
-            PV_DDNS_CONFIG_ERROR("Failed to parse value for 'upstream.ping_port' value is '%s'", value);
-        }
-    }
-
-    if (napc_streqli(key, "upstream.ping_interval")) {
-        napc_u16 tmp;
-        if (napc_parser_parseDecimalNumberU16(value, &tmp)) {
-            config->upstream.ping_interval = tmp;
-            return true;
-        } else {
-            PV_DDNS_CONFIG_ERROR("Failed to parse value for 'upstream.ping_interval' value is '%s'", value);
-        }
-    }
-
     if (napc_streqli(key, "upstream.timeout")) {
         napc_u16 tmp;
         if (napc_parser_parseDecimalNumberU16(value, &tmp)) {

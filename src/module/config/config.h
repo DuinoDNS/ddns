@@ -32,8 +32,6 @@
 			bool      enabled;
 			char      address[NAPC_MODULE_NET_IP_STR_MAX];
 			napc_u16  port;
-			napc_u16  ping_port;
-			napc_u16  ping_interval;
 			napc_u16  timeout;
 		} upstream;
 
@@ -74,4 +72,6 @@
 		const char *desired_section,
 		napc__Writer *writer
 	) NAPC_FN_WARNUNUSED_RET();
+
+	const char * const *ddns_Config_getSections(void);
 #endif
