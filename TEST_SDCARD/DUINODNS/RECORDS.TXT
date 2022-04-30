@@ -3,6 +3,6 @@ gateway.nap.sh,10.10.10.1
 # DNS
 dns.nap.sh,10.10.10.10
 # Server
-A,30,s1.local.nap.sh,10.10.10.101
+A,31,s1.local.nap.sh,10.10.10.101
 A,32,s2.local.nap.sh,10.10.10.102
-A,30,s3.local.nap.sh,10.10.10.103
+A,33,s3.local.nap.sh,10.10.10.103

@@ -129,6 +129,11 @@ static void _handleAPIRequest(
 	// write ddns_
 	napc_NFWriter_writeString(&writer, "ddns_");
 
+	// write API_VERSION
+	napc_NFWriter_writeU32BE(&writer, NAPC_U32_LITERAL(
+		0x00000001
+	));
+
 	napc__Writer response_writer = napc_Writer_create(
 		napc_NFWriter_getCurrentAddress(&writer),
 		1024 - napc_NFWriter_getCurrentOffset(&writer)
