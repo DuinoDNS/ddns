@@ -76,6 +76,7 @@
 			napc_u32 incoming_queries;
 			napc_u32 completed_queries;
 			napc_u32 truncated_responses;
+			napc_u32 timeout_queries;
 
 			napc_u16 _current_ticks_count;
 			napc_u16 _current_queries_count;

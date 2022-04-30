@@ -10,6 +10,7 @@ function ddns__getStatusAPICall($ip, $port, $secret) {
 	$status["incoming_queries"] = $reader->readU32BE();
 	$status["completed_queries"] = $reader->readU32BE();
 	$status["truncated_responses"] = $reader->readU32BE();
+	$status["timeout_queries"] = $reader->readU32BE();
 
 	$status["ticks_per_second"] = $reader->readU16BE();
 	$status["queries_per_second"] = $reader->readU16BE();

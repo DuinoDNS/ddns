@@ -12,6 +12,7 @@ void PV_ddns_onBoot(ddns__Instance *instance) {
 	instance->stats.incoming_queries = 0;
 	instance->stats.completed_queries = 0;
 	instance->stats.truncated_responses = 0;
+	instance->stats.timeout_queries = 0;
 
 	instance->stats.queries_per_second = 0;
 	instance->stats.ticks_per_second = 0;

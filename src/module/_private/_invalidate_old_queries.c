@@ -11,6 +11,8 @@ void PV_ddns_invalidateOldQueries(ddns__Instance *instance) {
 
 		if (delta >= instance->config.upstream.timeout) {
 			q->meta.state = DDNS_QUERY_STATE_TIMEOUT;
+
+			instance->stats.timeout_queries++;
 		}
 	}
 }

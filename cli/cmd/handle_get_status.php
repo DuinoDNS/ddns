@@ -13,6 +13,7 @@ function handleGetStatus($ip, $port, $secret, $args) {
 		printf("\n");
 		printf("DNS Queries total       : %5u\n", $status["incoming_queries"]);
 		printf("DNS Queries served      : %5u\n", $status["completed_queries"]);
+		printf("DNS Queries timeout     : %5u\n", $status["timeout_queries"]);
 		printf("Truncated DNS Responses : %5u\n", $status["truncated_responses"]);
 		printf("\n");
 		printf("Ticks per second        : %5u T/s\n", $status["ticks_per_second"]);
