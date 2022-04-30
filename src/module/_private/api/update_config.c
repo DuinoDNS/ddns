@@ -13,5 +13,7 @@ bool PV_ddns_handleAPICall_update_config(
 
 	ddns_Config_dump(&instance->config);
 
+	instance->wants_reset = true;
+
 	return true;
 }

@@ -24,6 +24,8 @@ void ddns_setup(
 	instance->config_file_path = config_file_path;
 	instance->records_file_path = records_file_path;
 
+	instance->wants_reset = false;
+
 	/**
 	 * This function is only called ONCE in the program's lifecycle
 	 */
