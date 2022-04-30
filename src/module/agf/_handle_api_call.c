@@ -59,6 +59,13 @@ bool PV_AGF_ddns_handleAPICall(
         return PV_ddns_handleAPICall_set_debug(instance, body, response);
     }
 
+    if (napc_memeql(request, "update_config", napc_strlen("update_config"))) {
+        const char *body = request + napc_strlen("update_config");
+
+        PV_DDNS_DEBUG("Handling API Call 'update_config'");
+        return PV_ddns_handleAPICall_update_config(instance, body, response);
+    }
+
     PV_DDNS_SECURITY("Unknown API call.");
 
     return false;

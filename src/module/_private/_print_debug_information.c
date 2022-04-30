@@ -5,6 +5,8 @@ void PV_ddns_printDebugInformation(ddns__Instance *instance) {
 		return;
 	}
 
+	return;
+
 	napc_printf(
 		"Queries: %" NAPC_U32_PRINTF " / %" NAPC_U32_PRINTF "\n",
 		instance->stats.completed_queries, instance->stats.incoming_queries

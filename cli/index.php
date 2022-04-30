@@ -70,6 +70,12 @@ function ddns_cli_main($args) {
 			);
 		} break;
 
+		case "update_config": {
+			handleUpdateConfig(
+				$target_ip, $target_port, $secret, $api_call_args
+			);
+		} break;
+
 		case "get_queries": {
 			handleGetQueries(
 				$target_ip, $target_port, $secret, $api_call_args

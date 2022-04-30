@@ -3,4 +3,4 @@
  */
 #include <napc.h>
 
-const napc_u32 ddns_api_version = NAPC_U32_LITERAL(0xc1b720a7);
+const napc_u32 ddns_api_version = NAPC_U32_LITERAL(0x9c7c310a);

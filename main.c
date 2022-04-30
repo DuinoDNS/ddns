@@ -16,7 +16,7 @@ void napc_app_setup(const char *platform) {
 	#if defined(ARDUINO)
 		ddns_instance_ptr = &ddns_instance_obj;
 	#else
-		ddns_instance_ptr = malloc(sizeof(* i));
+		ddns_instance_ptr = malloc(sizeof(* ddns_instance_ptr));
 	#endif
 
 	ddns_setup(

@@ -8,8 +8,6 @@ void ddns_Config_fromString(
 	ddns__Config *config,
 	const char *string
 ) {
-	ddns_Config_setDefaults(config);
-
 	napc__Reader reader;
 
 	napc_Reader_init(&reader, string, napc_strlen(string));

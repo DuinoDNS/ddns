@@ -44,4 +44,10 @@
         const char *request,
         napc__Writer *response
     );
+
+    bool PV_ddns_handleAPICall_update_config(
+        ddns__Instance *instance,
+        const char *request,
+        napc__Writer *response
+    );
 #endif
