@@ -38,6 +38,13 @@ bool PV_AGF_ddns_handleAPICall(
         return PV_ddns_handleAPICall_get_status(instance, body, response);
     }
 
+    if (napc_memeql(request, "get_tracked_metric", napc_strlen("get_tracked_metric"))) {
+        const char *body = request + napc_strlen("get_tracked_metric");
+
+        PV_DDNS_DEBUG("Handling API Call 'get_tracked_metric'");
+        return PV_ddns_handleAPICall_get_tracked_metric(instance, body, response);
+    }
+
     if (napc_memeql(request, "restart", napc_strlen("restart"))) {
         const char *body = request + napc_strlen("restart");
 

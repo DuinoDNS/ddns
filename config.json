@@ -24,6 +24,9 @@
 		"ping_interval": "napc_u16",
 		"timeout": "napc_u16"
 	},
+	"statistics": {
+		"tracked_metric": "napc_u16"
+	},
 	"discovery": {
 		"enabled": "bool"
 	},

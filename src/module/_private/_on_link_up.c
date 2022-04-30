@@ -21,4 +21,11 @@ void PV_ddns_onLinkUp(ddns__Instance *instance) {
 	instance->api.random_iv_ready = false;
 
 	instance->stats.avg_upstream_latency = 0;
+
+	PV_DDNS_DEBUG("Initializing tracked metric's data array");
+
+	// initialize tracked metrics data array
+	for (napc_size i = 0; i < NAPC_ARRAY_ELEMENTS(instance->stats.tracked_metric_data); ++i) {
+		instance->stats.tracked_metric_data[i] = NAPC_U16_LITERAL(0xFFFF);
+	}
 }

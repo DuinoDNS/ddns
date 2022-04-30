@@ -76,6 +76,12 @@ function ddns_cli_main($args) {
 			);
 		} break;
 
+		case "get_tracked_metric": {
+			handleGetTrackedMetric(
+				$target_ip, $target_port, $secret, $api_call_args
+			);
+		} break;
+
 		case "restart": {
 			handleRestart(
 				$target_ip, $target_port, $secret, $api_call_args

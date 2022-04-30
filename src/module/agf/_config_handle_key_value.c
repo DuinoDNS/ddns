@@ -162,6 +162,16 @@ bool PV_AGF_ddns_Config_handleKeyValue(
         }
     }
 
+    if (napc_streqli(key, "statistics.tracked_metric")) {
+        napc_u16 tmp;
+        if (napc_parser_parseDecimalNumberU16(value, &tmp)) {
+            config->statistics.tracked_metric = tmp;
+            return true;
+        } else {
+            PV_DDNS_CONFIG_ERROR("Failed to parse value for 'statistics.tracked_metric' value is '%s'", value);
+        }
+    }
+
     if (napc_streqli(key, "discovery.enabled")) {
         bool tmp;
         if (napc_parser_parseBoolean(value, &tmp)) {

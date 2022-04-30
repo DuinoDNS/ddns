@@ -3,6 +3,9 @@
 
 	#include <napc.h>
 
+	#define DDNS_CONFIG_TRACKED_METRIC_TPS               1u
+	#define DDNS_CONFIG_TRACKED_METRIC_UPSTREAM_LATENCY  2u
+
 	typedef struct {
 		struct {
 			char      secret[65];
@@ -33,6 +36,10 @@
 			napc_u16  ping_interval;
 			napc_u16  timeout;
 		} upstream;
+
+		struct {
+			napc_u16 tracked_metric;
+		} statistics;
 
 		struct {
 			bool      enabled;

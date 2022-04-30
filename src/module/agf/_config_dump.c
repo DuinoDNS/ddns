@@ -31,6 +31,9 @@ void PV_AGF_ddns_Config_dump(
     PV_DDNS_CONFIG_INFO("    ping_interval    = %" NAPC_U16_PRINTF, config->upstream.ping_interval);
     PV_DDNS_CONFIG_INFO("    timeout          = %" NAPC_U16_PRINTF, config->upstream.timeout);
     PV_DDNS_CONFIG_INFO(" ");
+    PV_DDNS_CONFIG_INFO("* statistics");
+    PV_DDNS_CONFIG_INFO("    tracked_metric   = %" NAPC_U16_PRINTF, config->statistics.tracked_metric);
+    PV_DDNS_CONFIG_INFO(" ");
     PV_DDNS_CONFIG_INFO("* discovery");
     PV_DDNS_CONFIG_INFO("    enabled          = %s", config->discovery.enabled ? "yes" : "no");
     PV_DDNS_CONFIG_INFO(" ");

@@ -50,6 +50,11 @@ void ddns_Config_setDefaults(
 	config->upstream.timeout = 125;
 
 	/**
+	 * Statistics
+	 */
+	config->statistics.tracked_metric = DDNS_CONFIG_TRACKED_METRIC_TPS;
+
+	/**
 	 * Discovery
 	 */
 	config->discovery.enabled = true;

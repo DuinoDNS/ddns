@@ -103,6 +103,14 @@ bool PV_AGF_ddns_Config_write(
 
         return true;
     }
+    /* statistics */
+    if (napc_streqli(desired_section, "statistics")) {
+        if (!napc_Writer_writeString(writer, "statistics.tracked_metric,")) return false;
+        if (!napc_Writer_writeStringFormat(writer, "%" NAPC_U16_PRINTF, config->statistics.tracked_metric)) return false;
+        if (!napc_Writer_writeChar(writer, '\n')) return false;
+
+        return true;
+    }
     /* discovery */
     if (napc_streqli(desired_section, "discovery")) {
         if (!napc_Writer_writeString(writer, "discovery.enabled,")) return false;
