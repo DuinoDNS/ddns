@@ -5,13 +5,11 @@ void PV_ddns_printDebugInformation(ddns__Instance *instance) {
 		return;
 	}
 
-	napc_printf("\n");
 	napc_printf(
 		"Queries: %" NAPC_U32_PRINTF " / %" NAPC_U32_PRINTF "\n",
 		instance->stats.completed_queries, instance->stats.incoming_queries
 	);
 	napc_printf("Ticks: %d\n", instance->stats.ticks_per_second);
-	napc_printf("\n");
 
 	for (napc_size i = 0; i < NAPC_ARRAY_ELEMENTS(instance->queries); ++i) {
 		ddns__Query *q = &instance->queries[i];

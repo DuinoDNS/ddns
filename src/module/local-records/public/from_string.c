@@ -74,7 +74,7 @@ static bool _parseLine(ddns__LocalDNSEntry *target, char *line) {
 			}
 		}
 
-		PV_DDNS_LC_DEBUG("Handling token '%s' (n_commas=%lu,op=%s)\n", token, n_commas, operation);
+		PV_DDNS_LC_DEBUG("Handling token '%s' (n_commas=%lu,op=%s)", token, n_commas, operation);
 
 		if (napc_streql("fetch-name", operation)) {
 			napc_strncpy(
@@ -86,7 +86,7 @@ static bool _parseLine(ddns__LocalDNSEntry *target, char *line) {
 			} else if (napc_streql("AAAA", token)) {
 				target->type = NAPC_DNS_QTYPE_AAAA;
 			} else {
-				PV_DDNS_LC_WARNING("Invalid type '%s'\n", token);
+				PV_DDNS_LC_WARNING("Invalid type '%s'", token);
 
 				return false;
 			}
@@ -156,7 +156,7 @@ void ddns_LocalRecords_fromString(
 		ddns__LocalDNSEntry *target = &records->entries[current_index];
 
 		if (!_parseLine(target, _line_buffer)) {
-			PV_DDNS_LC_WARNING("Invalid DNS-Entry '%s'\n", _line_buffer);
+			PV_DDNS_LC_WARNING("Invalid DNS-Entry '%s'", _line_buffer);
 		} else {
 			NAPC_ASSERT(target->valid);
 
