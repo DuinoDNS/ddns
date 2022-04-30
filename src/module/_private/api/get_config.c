@@ -9,6 +9,8 @@ bool PV_ddns_handleAPICall_get_config(
 	const char *request,
 	napc__Writer *response
 ) {
+	NAPC_IGNORE_VALUE(request);
+
 	for (napc_size i = 0; i < NAPC_ARRAY_ELEMENTS(_sections); ++i) {
 		bool result = ddns_Config_write(
 			&instance->config, _sections[i], response

@@ -16,7 +16,11 @@ static void _debugHandler(
 	}
 
 	napc_snprintf(
-		_msg_buffer, sizeof(_msg_buffer), "%d,%s,%s\n", level, function, message
+		_msg_buffer, sizeof(_msg_buffer), "%s,%d,%s,%s\n",
+		subsys,
+		level,
+		function,
+		message
 	);
 
 	napc_UDP_sendSilent(
