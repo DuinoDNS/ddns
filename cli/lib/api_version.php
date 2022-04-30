@@ -1,3 +1,3 @@
 <?php
-define("DDNS_API_VERSION", "0xb6a18126");
+define("DDNS_API_VERSION", "0x803ada31");
 ?>

@@ -30,7 +30,6 @@
 	typedef struct ddns__Instance {
 		bool eth_link_status;
 
-		bool needs_initialization;
 		bool wants_reset;
 		const char *config_file_path;
 		const char *records_file_path;

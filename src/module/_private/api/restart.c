@@ -7,7 +7,7 @@ bool PV_ddns_handleAPICall_restart(
 ) {
 	NAPC_IGNORE_VALUE(request);
 
-	instance->needs_initialization = true;
+	instance->wants_reset = true;
 
 	napc_Writer_writeString(response, "OK\n\x00");
 
