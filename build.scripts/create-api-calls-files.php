@@ -65,5 +65,5 @@ $api_version_file .= "#include <napc.h>\n\n";
 
 $api_version_file .= "const napc_u32 ddns_api_version = NAPC_U32_LITERAL($api_version_hex);\n";
 
-file_put_contents("src/module/agf/_api_version.h", $api_version_file);
+file_put_contents("src/module/agf/_api_version.c", $api_version_file);
 file_put_contents("cli/lib/api_version.php", "<?php\ndefine(\"DDNS_API_VERSION\", \"$api_version_hex\");\n?>\n");
