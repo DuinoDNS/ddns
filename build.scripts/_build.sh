@@ -18,6 +18,6 @@ zip -r ../arduino.tmp.zip .
 
 cd ..
 
-mv arduino.tmp.zip dist/arduino.zip
+mv arduino.tmp.zip dist/ddns-arduino.zip
 
 rm -rf arduino.tmp

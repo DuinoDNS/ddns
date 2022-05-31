@@ -1,0 +1,25 @@
+name: Build and Deploy (nightly)
+
+on:
+  push:
+    branches: [ nightly ]
+  pull_request:
+    branches: [ nightly ]
+
+env:
+  DDNS_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+  DDNS_DEPLOY_URL: ${{ secrets.DEPLOY_URL }}
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build source
+      run: ./build.scripts/build.php
+
+    - name: Deploy
+      run: ./ci.deploy.php
