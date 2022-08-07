@@ -20,4 +20,19 @@ cd ..
 
 mv arduino.tmp.zip dist/ddns-arduino.zip
 
+cd arduino.tmp
+
+mkdir ddns-nightly
+
+mv src ddns-nightly
+mv library.properties ddns-nightly
+
+rm -f ../dist/ddns-nightly.zip
+
+ls -la ../dist
+
+zip -r ../dist/ddns-nightly.zip .
+
+cd ..
+
 rm -rf arduino.tmp
