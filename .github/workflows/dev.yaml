@@ -1,0 +1,38 @@
+name: Build (dev)
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
+env:
+  DDNS_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+  DDNS_DEPLOY_URL: ${{ secrets.DEPLOY_URL }}
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build source
+      run: ./build.scripts/build.php
+
+    - name: Install arduino-cli
+      run: |
+         wget https://github.com/arduino/arduino-cli/releases/download/0.25.1/arduino-cli_0.25.1_Linux_64bit.tar.gz
+         tar -xzvf arduino-cli_0.25.1_Linux_64bit.tar.gz -C /usr/local/bin
+
+    - name: Setup arduino-cli
+      run: |
+         /usr/local/bin/arduino-cli core install arduino:samd --config-file ./arduino-cli-config.yaml
+         ls -la
+
+    - name: Installing ddns dependencies
+      run: |
+         /usr/local/bin/arduino-cli lib install Ethernet --config-file ./arduino-cli-config.yaml
+         /usr/local/bin/arduino-cli lib install SD --config-file ./arduino-cli-config.yaml
+         /usr/local/bin/arduino-cli lib install --git-url https://github.com/nap-software/libnapc-arduino-nightly-releases.git --config-file ./arduino-cli-config.yaml
