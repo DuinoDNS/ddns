@@ -37,7 +37,7 @@ jobs:
          /usr/local/bin/arduino-cli lib install SD --config-file ./arduino-cli-config.yaml
          /usr/local/bin/arduino-cli lib install --git-url https://github.com/nap-software/libnapc-arduino-nightly-releases.git --config-file ./arduino-cli-config.yaml
          unzip -l ./dist/ddns-arduino.zip
-         /usr/local/bin/arduino-cli lib install --zip-path ./dist/ddns-arduino.zip --config-file ./arduino-cli-config.yaml
+         /usr/local/bin/arduino-cli lib install --verbose --zip-path ./dist/ddns-arduino.zip --config-file ./arduino-cli-config.yaml
 
     - name: Compiling ddns
       run: |
