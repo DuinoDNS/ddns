@@ -19,7 +19,7 @@ unzip -l ./dist/ddns-arduino.zip
 
 /usr/local/bin/arduino-cli compile --fqbn arduino:samd:mkrwifi1010 ./ArduinoSketch --config-file ./.napci/tmp/arduino-cli-config.yaml --export-binaries
 
-mv ArduinoSketch/build/arduino.samd.mkrwifi1010/ArduinoSketch.ino.with_bootloader.hex \
-	dist/arduino.samd.mkrwifi1010.hex
+mv ArduinoSketch/build/arduino.samd.mkrwifi1010/ArduinoSketch.ino.bin \
+	dist/arduino.samd.mkrwifi1010.bin
 
 rm -rf ArduinoSketch/build
