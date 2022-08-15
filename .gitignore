@@ -2,3 +2,7 @@
 arduino.tmp/
 dist/
 /main
+.napci/build_files.tmp
+.napci/build_files
+.napci/upload_files.tmp
+.napci/upload_files
