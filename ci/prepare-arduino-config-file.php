@@ -11,4 +11,4 @@ directories:
   user: $project_root/.napci/tmp/arduino-cli-sketchbook
 ";
 
-file_put_contents("$project_root/.napci/tmp/arduino-cli-config.yaml", $template);
+echo $template;

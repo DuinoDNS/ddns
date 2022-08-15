@@ -1,11 +1,6 @@
 #!/bin/bash -eufx
 
 ./build.scripts/build.php
-#
-# create arduino config on the fly
-# because paths need to be absolute and be known
-#
-./ci/prepare-arduino-config-file.php
 
 #
 # compile

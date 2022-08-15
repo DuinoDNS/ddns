@@ -1,17 +1,12 @@
 #!/bin/bash -eux
 
-rm -rf .napci/build_files
-rm -rf .napci/upload_files
-
+./.napci/pre.sh
 ./ci/run.sh
+./.napci/post.sh
 
 #
 # place files into correct directory
 #
-rm -rf .napci/build_files.tmp
-mkdir .napci/build_files.tmp
-rm -rf .napci/upload_files.tmp
-mkdir .napci/upload_files.tmp
 
 # build_files
 mv dist/* .napci/build_files.tmp
@@ -22,7 +17,7 @@ mv .napci/build_files.tmp .napci/build_files
 # upload_files
 cd .napci/upload_files.tmp/
 
-# ln -s ...
+ln -s ../build_files/arduino.samd.mkrwifi1010.bin .
 
 cd ../../
 
