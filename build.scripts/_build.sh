@@ -27,11 +27,11 @@ mkdir ddns-nightly
 mv src ddns-nightly
 mv library.properties ddns-nightly
 
-rm -f ../dist/ddns-nightly.zip
+rm -f ../dist/ddns-arduino-cli.zip
 
 ls -la ../dist
 
-zip -r ../dist/ddns-nightly.zip .
+zip -r ../dist/ddns-arduino-cli.zip .
 
 cd ..
 

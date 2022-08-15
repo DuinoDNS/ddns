@@ -6,3 +6,7 @@ dist/
 .napci/build_files
 .napci/upload_files.tmp
 .napci/upload_files
+.napci/tmp/arduino-cli-staging
+.napci/tmp/arduino-cli-data
+.napci/tmp/arduino-cli-sketchbook
+.napci/tmp/arduino-cli-config.yaml
