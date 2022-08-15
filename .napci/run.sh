@@ -17,6 +17,8 @@ mkdir .napci/upload_files.tmp
 mv dist/* .napci/build_files.tmp
 mv .napci/build_files.tmp .napci/build_files
 
+rm .napci/build_files.tmp/ddns-arduino-cli.zip
+
 # upload_files
 cd .napci/upload_files.tmp/
 
